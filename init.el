@@ -33,6 +33,7 @@
    '("05626f77b0c8c197c7e4a31d9783c4ec6e351d9624aa28bc15e7f6d6a6ebd926" default))
  '(desktop-save-mode t)
  '(evil-mode t)
+ '(evil-toggle-key "C-S-<menu>")
  '(evil-undo-system 'undo-redo)
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
