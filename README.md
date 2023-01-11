@@ -24,6 +24,7 @@ This is my Emacs configuration. It's simple, mostly declarative, and discoverabl
 # Cheat Sheet
 
 - `C-Menu` opens the global menu
-- `C-/, C-_, C-x u` Undo
-- `C-?` Redo
+- `C-z` Switch to Emacs mode
+- `C-/, C-_, C-x u` Undo (In Emacs mode, as an alternative to C-z)
+- `C-?` Redo (In Emacs mode)
 
