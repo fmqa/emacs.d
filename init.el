@@ -6,11 +6,14 @@
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(use-package evil :ensure t)
+
 ;; Bind Ctrl+Menu to open the global menu 
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
-
-(if (fboundp 'use-package)
-    (use-package evil))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -30,6 +33,7 @@
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(undo-no-redo t)
+ '(use-package-always-ensure t)
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -37,3 +41,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(package-install-selected-packages t)
