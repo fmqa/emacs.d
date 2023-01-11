@@ -1,3 +1,6 @@
+;; Bind Ctrl+Menu to open the global menu 
+(global-set-key (kbd "C-<menu>") 'menu-bar-open)
+
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -6,14 +9,18 @@
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-(unless (package-installed-p 'use-package)
+(unless (package-installed-p 'which-key)
   (package-refresh-contents)
-  (package-install 'use-package))
+  (package-install 'which-key))
 
-(use-package evil :ensure t)
+(unless (package-installed-p 'evil)
+  (package-refresh-contents)
+  (package-install 'evil))
+(require 'evil)
 
-;; Bind Ctrl+Menu to open the global menu 
-(global-set-key (kbd "C-<menu>") 'menu-bar-open)
+(unless (package-installed-p 'dracula-theme)
+  (package-refresh-contents)
+  (package-install 'dracula-theme))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -29,11 +36,10 @@
  '(evil-undo-system 'undo-redo)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
- '(package-selected-packages '(use-package which-key dracula-theme evil))
+ '(package-selected-packages '(which-key evil dracula-theme))
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(undo-no-redo t)
- '(use-package-always-ensure t)
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -41,5 +47,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(package-install-selected-packages t)
