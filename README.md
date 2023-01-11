@@ -4,6 +4,13 @@ _Vanilla, vim-flavoured Emacs configuration_
 
 This is my Emacs configuration. It's simple, mostly declarative, and discoverable. It requires **Emacs 28+**.
 
+# Principles
+
+* _Use the included batteries_: The standard Emacs packages are tested & curated by the Emacs community, use them!
+* _Keep the overhead low_: Install only the neccessary 3rd-party packages.
+* _Configure declaratively_: Prefer `easy-customize` over other configuration methods.
+* _Keep it simple_: Apply KISS; The `init.el` should be simple enough to be read by a novice.
+
 # Features
 
 * [Dracula Theme](https://github.com/dracula/emacs) for a similar colour scheme to common GNOME dark mode themes
