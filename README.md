@@ -6,18 +6,20 @@ This is my Emacs configuration. It's simple, mostly declarative, and discoverabl
 
 # Principles
 
-* _Use the included batteries_: The standard Emacs packages are tested & curated by the Emacs community, use them!
-* _Keep the overhead low_: Install only the neccessary 3rd-party packages.
 * _Configure declaratively_: Prefer `easy-customize` over other configuration methods.
 * _Keep it simple_: Apply KISS; The `init.el` should be simple enough to be read by a novice.
+* _Keep the overhead low_: Install only the neccessary 3rd-party packages.
+* _Use the included batteries_: The standard Emacs packages are tested & curated by the Emacs community, use them!
 
 # Features
 
-* [Dracula Theme](https://github.com/dracula/emacs) for a similar colour scheme to common GNOME dark mode themes
+_Links_ denote external packages
+
 * `cua-mode` enabled (less mental overhead)
 * `desktop-save-mode` for simple session persistence
 * `undo-redo` for traditional undo behavior (requires Emacs 28+)
 * `whitespace-mode` to visualize trailing whitespace & tab indentations
+* [Dracula Theme](https://github.com/dracula/emacs) for a similar colour scheme to common GNOME dark mode themes
 * [which-key](https://github.com/justbur/emacs-which-key) for discoverability
 
 # Cheat Sheet
