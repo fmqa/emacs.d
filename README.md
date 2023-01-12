@@ -34,7 +34,8 @@ _Links_ denote external packages
 - `C-SPACE` Block selection (Classic)
 - `C-u <N> C-DEL` Delete N words forward
 - `C-u <N> C-BCKSP` Delete N word backward
-- `C-u <N> M-@`  Mark N words
+- `C-u <N> M-@` `C-u <N> C-S-Right` Mark N words forward
+- `C-u <N> C-S-Left` Mark N words backward
 - `C-SPC C-s <STR>` Mark until string
 - `C-SPC C-s <STR>` Mark until string backwards
 - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
