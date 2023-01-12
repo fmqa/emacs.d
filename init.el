@@ -1,6 +1,10 @@
 ;; Bind Ctrl+Menu to open the global menu
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
 
+;; Line numbers
+(add-hook 'text-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'linum-mode)
+
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
