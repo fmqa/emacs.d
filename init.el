@@ -1,5 +1,7 @@
 ;; Bind Ctrl+Menu to open the global menu
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
+;; Removes leftover overlays from string-rectangle
+(defun overlays-delete () "Deletes all overlays" (interactive) (delete-all-overlays))
 
 ;; MELPA
 (require 'package)
