@@ -29,11 +29,13 @@ _Links_ denote external packages
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
 - `C-x h` Select all
-- `C-RET` Block selection
+- `C-RET` Block selection (CUA)
+- `C-SPACE` Block selection (Classic)
 - `C-u <N> C-DEL` Delete N words forward
 - `C-u <N> C-BCKSP` Delete N word backward
 - `C-u <N> M-@`  Mark N words
 - `C-SPC C-s <STR>` Mark until string
 - `C-SPC C-s <STR>` Mark until string backwards
 - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
+- `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
 
