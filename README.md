@@ -22,8 +22,9 @@ This is my Emacs configuration. It's simple, mostly declarative, and discoverabl
 
 # Cheat Sheet
 
-- `C-Menu` opens the global menu
+- `C-Menu` Opens the global menu
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
-- `C-u <N> C-DEL` Delete N words
+- `C-u <N> C-DEL` Delete N words forward
+- `C-u <N> C-BCKSP` Delete N word backward
 
