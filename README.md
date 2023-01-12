@@ -19,6 +19,7 @@ _Links_ denote external packages
 * `desktop-save-mode` for simple session persistence
 * `undo-redo` for traditional undo behavior (requires Emacs 28+)
 * `whitespace-mode` to visualize trailing whitespace & tab indentations
+* `fido-mode` for improved completion & discoverability
 * [Dracula Theme](https://github.com/dracula/emacs) for a similar colour scheme to common GNOME dark mode themes
 * [which-key](https://github.com/justbur/emacs-which-key) for discoverability
 
