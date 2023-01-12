@@ -22,9 +22,16 @@ This is my Emacs configuration. It's simple, mostly declarative, and discoverabl
 
 # Cheat Sheet
 
+- `Menu` Enter command
 - `C-Menu` Opens the global menu
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
+- `C-x h` Select all
+- `C-RET` Block selection
 - `C-u <N> C-DEL` Delete N words forward
 - `C-u <N> C-BCKSP` Delete N word backward
+- `C-u <N> M-@`  Mark N words
+- `C-SPC C-s <STR>` Mark until string
+- `C-SPC C-s <STR>` Mark until string backwards
+- `C-x C-x (rapidly) r s` `C-S-x` Copy to register
 
