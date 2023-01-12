@@ -53,6 +53,18 @@
  '(tool-bar-mode nil)
  '(undo-no-redo t)
  '(which-key-mode t)
+ '(whitespace-display-mappings
+   '((space-mark 32
+				 [183]
+				 [46])
+	 (space-mark 160
+				 [164]
+				 [95])
+	 (newline-mark 10
+				   [36 10])
+	 (tab-mark 9
+			   [10095 9]
+			   [92 9])))
  '(whitespace-style
    '(face trailing tabs spaces newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
 (custom-set-faces
