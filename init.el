@@ -12,6 +12,11 @@
 (unless (package-installed-p 'which-key)
   (package-refresh-contents)
   (package-install 'which-key))
+(with-eval-after-load 'which-key
+  ;; Avoid conflict with which-key pager (Originally, this key is defined as `mark-defun')
+  (global-unset-key (kbd "C-M-h"))
+  ;; Avoid conflict with which-key pager (Originally, this key is defined as `help-for-help')
+  (global-unset-key (kbd "C-h C-h")))
 
 (unless (package-installed-p 'dracula-theme)
   (package-refresh-contents)
