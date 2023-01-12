@@ -1,4 +1,4 @@
-;; Bind Ctrl+Menu to open the global menu 
+;; Bind Ctrl+Menu to open the global menu
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
 
 ;; MELPA
@@ -12,11 +12,6 @@
 (unless (package-installed-p 'which-key)
   (package-refresh-contents)
   (package-install 'which-key))
-
-(unless (package-installed-p 'evil)
-  (package-refresh-contents)
-  (package-install 'evil))
-(require 'evil)
 
 (unless (package-installed-p 'dracula-theme)
   (package-refresh-contents)
@@ -32,13 +27,10 @@
  '(custom-safe-themes
    '("05626f77b0c8c197c7e4a31d9783c4ec6e351d9624aa28bc15e7f6d6a6ebd926" default))
  '(desktop-save-mode t)
- '(evil-mode t)
- '(evil-toggle-key "C-S-<menu>")
- '(evil-undo-system 'undo-redo)
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
- '(package-selected-packages '(which-key evil dracula-theme))
+ '(package-selected-packages '(which-key dracula-theme))
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(undo-no-redo t)
