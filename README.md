@@ -1,6 +1,6 @@
 # emacs.d
 
-_Vanilla, vim-flavoured Emacs configuration_
+_Vanilla, discoverable Emacs configuration_
 
 This is my Emacs configuration. It's simple, mostly declarative, and discoverable. It requires **Emacs 28+**.
 
@@ -18,13 +18,11 @@ This is my Emacs configuration. It's simple, mostly declarative, and discoverabl
 * `desktop-save-mode` for simple session persistence
 * `undo-redo` for traditional undo behavior (requires Emacs 28+)
 * `whitespace-mode` to visualize trailing whitespace & tab indentations
-* [evil-mode](https://github.com/emacs-evil/evil) for modal editing
 * [which-key](https://github.com/justbur/emacs-which-key) for discoverability
 
 # Cheat Sheet
 
 - `C-Menu` opens the global menu
-- `C-S-Menu` Switch to Emacs mode
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
 
