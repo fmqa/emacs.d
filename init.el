@@ -5,6 +5,9 @@
 (add-hook 'text-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
 
+;; join-line is bound to M-^ by default which is too annoying to use with dead keys
+(global-set-key (kbd "C-,") 'join-line)
+
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
