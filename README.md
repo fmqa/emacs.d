@@ -25,4 +25,5 @@ This is my Emacs configuration. It's simple, mostly declarative, and discoverabl
 - `C-Menu` opens the global menu
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
+- `C-u <N> C-DEL` Delete N words
 
