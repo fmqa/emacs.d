@@ -18,6 +18,20 @@
 ;; Bind the "fancy" expansion to something more accessible
 (global-set-key (kbd "C-#") 'hippie-expand)
 
+;; Prettify checkboxes in org-mode
+(defun configure-prettify-symbols-controls ()
+  (setq prettify-symbols-alist '(("[ ]" . "☐")
+                                 ("[X]" . "☑")
+                                 ("[-]" . "⊟"))))
+(add-hook 'org-mode-hook (lambda () (configure-prettify-symbols-controls) (prettify-symbols-mode)))
+
+;; DrScheme-like lambdas for LISPs
+(defun configure-prettify-symbols-lisps ()
+  (setq prettify-symbols-alist '(("lambda" . "λ"))))
+(add-hook 'lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
+(add-hook 'emacs-lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
+(add-hook 'scheme-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
+
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -59,6 +73,7 @@
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(package-selected-packages '(which-key dracula-theme))
+ '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
  '(rectangle-preview nil)
  '(tab-width 4)
