@@ -2,7 +2,7 @@
 
 _Vanilla, discoverable Emacs configuration_
 
-This is my Emacs configuration. It's simple, mostly declarative, and discoverable. It requires **Emacs 28+**.
+This is my Emacs configuration. It's simple, (mostly) declarative, and discoverable. It requires **Emacs 28+**.
 
 # Principles
 
