@@ -2,8 +2,8 @@
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
 
 ;; Line numbers
-(add-hook 'text-mode-hook 'linum-mode)
-(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'text-mode-hook 'display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; join-line is bound to M-^ by default which is too annoying to use with dead keys
 (global-set-key (kbd "C-,") 'join-line)
