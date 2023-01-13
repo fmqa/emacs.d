@@ -55,6 +55,7 @@
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(package-selected-packages '(which-key dracula-theme))
+ '(recentf-mode t)
  '(rectangle-preview nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
