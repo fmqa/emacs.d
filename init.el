@@ -7,6 +7,12 @@
 
 ;; join-line is bound to M-^ by default which is too annoying to use with dead keys
 (global-set-key (kbd "C-,") 'join-line)
+;; Bind dabbrev commands to something more accessible on a non-US keyboard layout,
+;; since they are commonly used
+(global-set-key (kbd "C-. C-.") 'dabbrev-expand)
+(global-set-key (kbd "C-. C-SPC") 'dabbrev-completion)
+;; Bind the "fancy" expansion to something more accessible
+(global-set-key (kbd "C-#") 'hippie-expand)
 
 ;; MELPA
 (require 'package)
