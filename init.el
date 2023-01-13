@@ -72,6 +72,7 @@
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
+ '(org-replace-disputed-keys t)
  '(package-selected-packages '(which-key dracula-theme))
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
