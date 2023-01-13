@@ -25,8 +25,10 @@ _Links_ denote external packages
 
 # Cheat Sheet
 
+Entries with _emphasis_ are custom bindings 
+
 - `Menu` Enter command
-- `C-Menu` Opens the global menu
+- `C-Menu` _Opens the global menu_
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
 - `C-x h` Select all
@@ -38,6 +40,10 @@ _Links_ denote external packages
 - `C-u <N> C-S-Left` Mark N words backward
 - `C-SPC C-s <STR>` Mark until string
 - `C-SPC C-s <STR>` Mark until string backwards
+- `C-,` _Join lines_
+- `C-. C-.` _Simple autocomplete_
+- `C-. C-SPACE` _Show possible completions_
+- `C-#` _Smart autocompletion_ 
 - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
 - `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
 
