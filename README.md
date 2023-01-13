@@ -20,8 +20,8 @@ _Links_ denote external packages
 * `undo-redo` for traditional undo behavior (requires Emacs 28+)
 * `whitespace-mode` to visualize trailing whitespace & tab indentations
 * `fido-mode` for improved completion & discoverability
-* [dracula](https://github.com/dracula/emacs) theme for a similar colour scheme to common GNOME dark mode themes
 * [which-key](https://github.com/justbur/emacs-which-key) for discoverability
+* [dracula](https://github.com/dracula/emacs) theme for a similar colour scheme to common GNOME dark mode themes
 
 # Cheat Sheet
 
