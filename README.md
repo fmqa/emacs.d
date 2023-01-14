@@ -6,10 +6,16 @@ This is my Emacs configuration. It's simple, (mostly) declarative, and discovera
 
 # Principles
 
-* _Configure declaratively_: Prefer `easy-customize` over other configuration methods.
-* _Keep it simple_: Apply KISS; The `init.el` should be simple enough to be read by a novice.
-* _Keep the overhead low_: Install only the neccessary 3rd-party packages.
+* _Configure declaratively_: Prefer `easy-customize` over other configuration methods
+* _Keep it simple_: Apply KISS; The `init.el` should be simple enough to be read by a novice
+* _Keep the overhead low_: Install only the neccessary 3rd-party packages
 * _Use the included batteries_: The standard Emacs packages are tested & curated by the Emacs community, use them!
+* _Retain the defaults as much as possible_: We try to keep the default keybinds as much as possible and avoid rebinding everything
+
+# Requirements
+
+* Emacs 28+
+* A keyboard with a ≣ key i.e. "menu key" (also sometimes called "application key"). C-≣ is used as a prefix key since it is usually not bound to anything
 
 # Features
 
@@ -26,13 +32,13 @@ _Links_ denote external packages
 
 # Cheat Sheet
 
-Entries with _emphasis_ are custom bindings 
+Entries with _emphasis_ are custom bindings
 
-- `Menu` Enter command
-- `M-Menu` _Opens the global menu_
-- `C-Menu o` _Opens the "recent files" list_
-- `C-Menu e` _Edit the "recent files" list_
-- `C-Menu c` _Clear the "recent files" list_
+- `≣` Enter command
+- `M-≣` _Opens the global menu_
+- `C-≣ o` _Opens the "recent files" list_
+- `C-≣ e` _Edit the "recent files" list_
+- `C-≣ c` _Clear the "recent files" list_
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
 - `C-x h` Select all
@@ -44,10 +50,10 @@ Entries with _emphasis_ are custom bindings
 - `C-u <N> C-S-Left` Mark N words backward
 - `C-SPC C-s <STR>` Mark until string
 - `C-SPC C-s <STR>` Mark until string backwards
-- `C-,` _Join lines_
-- `C-. C-.` _Simple autocomplete_
-- `C-. C-SPACE` _Show possible completions_
-- `C-#` _Smart autocompletion_ 
+- `C-; C-j` _Join lines_
+- `C-; C-;` _Simple autocompletion_
+- `C-; C-.` _Show possible completions_
+- `C-M-,` _Smart autocompletion_
 - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
 - `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
 

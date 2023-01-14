@@ -9,14 +9,21 @@
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-;; join-line is bound to M-^ by default which is too annoying to use with dead keys
-(global-set-key (kbd "C-,") 'join-line)
-;; Bind dabbrev commands to something more accessible on a non-US keyboard layout,
-;; since they are commonly used
-(global-set-key (kbd "C-. C-.") 'dabbrev-expand)
-(global-set-key (kbd "C-. C-SPC") 'dabbrev-completion)
-;; Bind the "fancy" expansion to something more accessible
-(global-set-key (kbd "C-#") 'hippie-expand)
+;;
+;; C-; is not bound to anything, so use it as prefix key for several common operations:
+;;
+;; 1) join-line is bound to M-^ by default which is too annoying to use with dead keys
+(global-set-key (kbd "C-; C-j") 'join-line)
+;; 2) Bind dabbrev commands to something more accessible on a non-US keyboard layout, since they are commonly used.
+;;    2.1) dabbrev-expand will be executed *a lot* consequetively to cycle through expansions, so make it easy to use.
+(global-set-key (kbd "C-; C-;") 'dabbrev-expand)
+;;    2.2) dabbrev-completion will be executed *sometimes*, so have it bound to something close by.
+;;         The user has to think a bit to trigger it. It's there when we need it but can't be triggered by accident.
+(global-set-key (kbd "C-; C-.") 'dabbrev-completion)
+;; 3) Bind the "fancy" expansion to something more elaborate, but still easily usable.
+;;    We expect to use it to use it for some specific stuff e.g. argument lists.
+;;    Can be swapped with dabbrev-expand if needed.
+(global-set-key (kbd "C-M-,") 'hippie-expand)
 
 ;; Prettify checkboxes in org-mode
 (defun configure-prettify-symbols-controls ()
