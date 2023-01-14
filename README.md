@@ -29,10 +29,10 @@ _Links_ denote external packages
 Entries with _emphasis_ are custom bindings 
 
 - `Menu` Enter command
-- `C-Menu` _Opens the global menu_
-- `M-Menu o` _Opens the "recent files" list_
-- `M-Menu e` _Edit the "recent files" list_
-- `M-Menu c` _Clear the "recent files" list_
+- `M-Menu` _Opens the global menu_
+- `C-Menu o` _Opens the "recent files" list_
+- `C-Menu e` _Edit the "recent files" list_
+- `C-Menu c` _Clear the "recent files" list_
 - `C-z, C-/, C-_, C-x u` Undo
 - `C-?` Redo
 - `C-x h` Select all
