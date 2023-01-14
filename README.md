@@ -15,7 +15,7 @@ This is my Emacs configuration. It's simple, (mostly) declarative, and discovera
 # Requirements
 
 * Emacs 28+
-* A keyboard with a ≣ key i.e. "menu key" (also sometimes called "application key"). C-≣ is used as a prefix key since it is usually not bound to anything
+* A keyboard with a ≣ key i.e. "menu key" (also sometimes called "application key"). C-≣ is used as a prefix key since it is usually not bound to anything. On a Mac keyboard, the config should be edit to reassign this to another key e.g. "Option".
 
 # Features
 
