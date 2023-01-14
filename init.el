@@ -94,7 +94,7 @@
 			   [10095 9]
 			   [92 9])))
  '(whitespace-style
-   '(face trailing tabs spaces newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
+   '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
