@@ -1,6 +1,6 @@
 # emacs.d
 
-![Screenshot](.assets/screenshot.png "This is how it looks")
+![Screenshot](.assets/screenshot.png?raw=true "This is how it looks")
 
 _Vanilla, discoverable Emacs configuration_
 
