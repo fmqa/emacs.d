@@ -36,26 +36,28 @@ _Links_ denote external packages
 
 Entries with _emphasis_ are custom bindings
 
-- `≣` Enter command
-- `M-≣` _Opens the global menu_
-- `C-≣ o` _Opens the "recent files" list_
-- `C-≣ e` _Edit the "recent files" list_
-- `C-≣ c` _Clear the "recent files" list_
-- `C-z, C-/, C-_, C-x u` Undo
-- `C-?` Redo
-- `C-x h` Select all
-- `C-RET` Block selection (CUA)
-- `C-SPACE` Block selection (Classic)
-- `C-u <N> C-DEL` Delete N words forward
-- `C-u <N> C-BCKSP` Delete N word backward
-- `C-u <N> M-@` `C-u <N> C-S-Right` Mark N words forward
-- `C-u <N> C-S-Left` Mark N words backward
-- `C-SPC C-s <STR>` Mark until string
-- `C-SPC C-s <STR>` Mark until string backwards
-- `C-; C-j` _Join lines_
-- `C-; C-;` _Simple autocompletion_
-- `C-; C-.` _Show possible completions_
-- `C-M-,` _Smart autocompletion_
-- `C-x C-x (rapidly) r s` `C-S-x` Copy to register
-- `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
+- General
+  - `≣` Enter command
+  - `M-≣` _Opens the global menu_
+  - `C-≣ o` _Opens the "recent files" list_
+  - `C-≣ e` _Edit the "recent files" list_
+  - `C-≣ c` _Clear the "recent files" list_
+  - `C-z, C-/, C-_, C-x u` Undo
+  - `C-?` Redo
+  - `C-x h` Select all
+  - `C-RET` Block selection (CUA)
+  - `C-SPACE` Block selection (Classic)
+  - `C-u <N> C-DEL` Delete N words forward
+  - `C-u <N> C-BCKSP` Delete N word backward
+  - `C-u <N> M-@` `C-u <N> C-S-Right` Mark N words forward
+  - `C-u <N> C-S-Left` Mark N words backward
+  - `C-SPC C-s <STR>` Mark until string
+  - `C-SPC C-s <STR>` Mark until string backwards
+  - `C-; C-j` _Join lines_
+  - `C-; C-;` _Simple autocompletion_
+  - `C-; C-.` _Show possible completions_
+  - `C-M-,` _Smart autocompletion_
+  - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
+  - `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
+  - `C-x r i` Insert register
 
