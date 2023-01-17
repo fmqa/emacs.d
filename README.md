@@ -30,7 +30,6 @@ _Links_ denote external packages
 * `vertical-fido-mode` for improved completion & discoverability
 * `recentf-mode` to reopen past edits
 * [which-key](https://github.com/justbur/emacs-which-key) for discoverability
-* [dracula](https://github.com/dracula/emacs) theme for a similar colour scheme to common GNOME dark mode themes
 
 # Cheat Sheet
 

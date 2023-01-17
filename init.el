@@ -63,10 +63,6 @@
 (unless (package-installed-p 'which-key)
   (package-install 'which-key))
 
-;; Install the dracula theme if unavailable
-(unless (package-installed-p 'dracula-theme)
-  (package-install 'dracula-theme))
-
 ;; Notes:
 ;;
 ;; * `rectangle-preview' is disabled due to an overlay clearing bug
@@ -78,16 +74,14 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(cua-mode t)
- '(custom-enabled-themes '(dracula))
- '(custom-safe-themes
-   '("05626f77b0c8c197c7e4a31d9783c4ec6e351d9624aa28bc15e7f6d6a6ebd926" default))
+ '(custom-enabled-themes '(wombat))
  '(desktop-save-mode t)
  '(fido-vertical-mode t)
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(org-replace-disputed-keys t)
- '(package-selected-packages '(which-key dracula-theme))
+ '(package-selected-packages '(which-key))
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
  '(rectangle-preview nil)
