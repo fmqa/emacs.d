@@ -25,6 +25,12 @@
 ;;    Can be swapped with dabbrev-expand if needed.
 (global-set-key (kbd "C-M-,") 'hippie-expand)
 
+(with-eval-after-load 'which-key
+  ;; Avoid conflict with which-key pager (Originally, this key is defined as `mark-defun')
+  (global-unset-key (kbd "C-M-h"))
+  ;; Avoid conflict with which-key pager (Originally, this key is defined as `help-for-help')
+  (global-unset-key (kbd "C-h C-h")))
+
 ;; Prettify checkboxes in org-mode
 (defun configure-prettify-symbols-controls ()
   (setq prettify-symbols-alist '(("[ ]" . "☐")
@@ -45,19 +51,20 @@
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+;; Initialize package management
 (package-initialize)
 
-(unless (package-installed-p 'which-key)
-  (package-refresh-contents)
-  (package-install 'which-key))
-(with-eval-after-load 'which-key
-  ;; Avoid conflict with which-key pager (Originally, this key is defined as `mark-defun')
-  (global-unset-key (kbd "C-M-h"))
-  ;; Avoid conflict with which-key pager (Originally, this key is defined as `help-for-help')
-  (global-unset-key (kbd "C-h C-h")))
+;; Update packages if on a new install
+(unless package-archive-contents
+  (package-refresh-contents))
 
+;; Install which-key if unavailable
+(unless (package-installed-p 'which-key)
+  (package-install 'which-key))
+
+;; Install the dracula theme if unavailable
 (unless (package-installed-p 'dracula-theme)
-  (package-refresh-contents)
   (package-install 'dracula-theme))
 
 ;; Notes:
