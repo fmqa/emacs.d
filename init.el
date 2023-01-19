@@ -8,6 +8,7 @@
 ;; Line numbers
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
 ;;
 ;; C-; is not bound to anything, so use it as prefix key for several common operations:
