@@ -64,6 +64,9 @@
 (unless (package-installed-p 'which-key)
   (package-install 'which-key))
 
+(unless (package-installed-p 'dracula-theme)
+  (package-install 'dracula-theme))
+
 ;; Notes:
 ;;
 ;; * `rectangle-preview' is disabled due to an overlay clearing bug
