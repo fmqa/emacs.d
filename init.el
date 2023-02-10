@@ -75,7 +75,9 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(cua-mode t)
- '(custom-enabled-themes '(wombat))
+ '(custom-enabled-themes '(dracula))
+ '(custom-safe-themes
+   '("b54bf2fa7c33a63a009f249958312c73ec5b368b1094e18e5953adb95ad2ec3a" default))
  '(desktop-save-mode t)
  '(fido-vertical-mode t)
  '(global-whitespace-mode t)
