@@ -67,10 +67,6 @@
 (unless (package-installed-p 'dracula-theme)
   (package-install 'dracula-theme))
 
-;; Notes:
-;;
-;; * `rectangle-preview' is disabled due to an overlay clearing bug
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -85,12 +81,10 @@
  '(fido-vertical-mode t)
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
- '(menu-bar-mode nil)
  '(org-replace-disputed-keys t)
  '(package-selected-packages '(which-key))
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
- '(rectangle-preview nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(undo-no-redo t)
