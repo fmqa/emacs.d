@@ -81,6 +81,8 @@
  '(fido-vertical-mode t)
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
+ '(initial-major-mode 'org-mode)
+ '(initial-scratch-message nil)
  '(org-replace-disputed-keys t)
  '(package-selected-packages '(which-key))
  '(prettify-symbols-unprettify-at-point 'right-edge)
