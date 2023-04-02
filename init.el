@@ -10,6 +10,9 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
+;; Electric pairs
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+
 ;;
 ;; C-; is not bound to anything, so use it as prefix key for several common operations:
 ;;
