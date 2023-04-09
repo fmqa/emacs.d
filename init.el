@@ -106,6 +106,7 @@
 	 (tab-mark 9
 			   [10095 9]
 			   [92 9])))
+ '(whitespace-global-modes '(not erc-mode))
  '(whitespace-style
    '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
 (custom-set-faces
