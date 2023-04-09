@@ -81,6 +81,9 @@
  '(custom-safe-themes
    '("b54bf2fa7c33a63a009f249958312c73ec5b368b1094e18e5953adb95ad2ec3a" default))
  '(desktop-save-mode t)
+ '(erc-interpret-mirc-color t)
+ '(erc-modules
+   '(autojoin button completion dcc fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring smiley stamp track))
  '(fido-vertical-mode t)
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
