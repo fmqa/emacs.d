@@ -49,6 +49,16 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 (add-hook 'scheme-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 
+;; ERC: Autoresize based on window width
+(defun on-erc-window-size-change (frame)
+  (save-excursion
+	(dolist (buffer (buffer-list frame))
+	  (with-current-buffer buffer
+		(when (eq major-mode 'erc-mode)
+		  (set (make-local-variable 'erc-fill-column)
+			   (- (window-width (get-buffer-window buffer)) 2)))))))
+(add-hook 'window-size-change-functions 'on-erc-window-size-change)
+
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
