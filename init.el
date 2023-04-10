@@ -85,6 +85,7 @@
  '(erc-modules
    '(autojoin button completion dcc fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring smiley stamp track))
  '(fido-vertical-mode t)
+ '(global-goto-address-mode t)
  '(global-whitespace-mode t)
  '(inhibit-startup-screen t)
  '(initial-major-mode 'org-mode)
