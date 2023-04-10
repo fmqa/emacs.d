@@ -79,7 +79,7 @@
  '(cua-mode t)
  '(custom-enabled-themes '(dracula))
  '(custom-safe-themes
-   '("b54bf2fa7c33a63a009f249958312c73ec5b368b1094e18e5953adb95ad2ec3a" default))
+   '("f681100b27d783fefc3b62f44f84eb7fa0ce73ec183ebea5903df506eb314077" default))
  '(desktop-save-mode t)
  '(erc-interpret-mirc-color t)
  '(erc-modules
