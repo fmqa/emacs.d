@@ -58,6 +58,8 @@
 		  (set (make-local-variable 'erc-fill-column)
 			   (- (window-width (get-buffer-window buffer)) 2)))))))
 (add-hook 'window-size-change-functions 'on-erc-window-size-change)
+(defun erc-status-sidebar-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-status-sidebar-mode)))
+(defun erc-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-mode)))
 
 ;; MELPA
 (require 'package)
@@ -91,6 +93,11 @@
  '(custom-safe-themes
    '("f681100b27d783fefc3b62f44f84eb7fa0ce73ec183ebea5903df506eb314077" default))
  '(desktop-save-mode t)
+ '(display-buffer-alist
+   '((erc-status-sidebar-mode-p display-buffer-in-side-window
+								(side . left))
+	 (erc-mode-p display-buffer-reuse-mode-window
+				 (mode erc-mode))))
  '(erc-interpret-mirc-color t)
  '(erc-modules
    '(autojoin button completion dcc fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring smiley stamp track))
