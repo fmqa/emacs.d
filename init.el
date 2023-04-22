@@ -19,7 +19,7 @@
 ;; 1) join-line is bound to M-^ by default which is too annoying to use with dead keys
 (global-set-key (kbd "C-; C-j") 'join-line)
 ;; 2) Bind dabbrev commands to something more accessible on a non-US keyboard layout, since they are commonly used.
-;;    2.1) dabbrev-expand will be executed *a lot* consequetively to cycle through expansions, so make it easy to use.
+;;    2.1) dabbrev-expand will be executed *a lot* consecutively to cycle through expansions, so make it easy to use.
 (global-set-key (kbd "C-; C-;") 'dabbrev-expand)
 ;;    2.2) dabbrev-completion will be executed *sometimes*, so have it bound to something close by.
 ;;         The user has to think a bit to trigger it. It's there when we need it but can't be triggered by accident.
@@ -49,15 +49,7 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 (add-hook 'scheme-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 
-;; ERC: Autoresize based on window width
-(defun on-erc-window-size-change (frame)
-  (save-excursion
-	(dolist (buffer (buffer-list frame))
-	  (with-current-buffer buffer
-		(when (eq major-mode 'erc-mode)
-		  (set (make-local-variable 'erc-fill-column)
-			   (- (window-width (get-buffer-window buffer)) 2)))))))
-(add-hook 'window-size-change-functions 'on-erc-window-size-change)
+;; ERC: Predicates for buffer mode checks
 (defun erc-status-sidebar-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-status-sidebar-mode)))
 (defun erc-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-mode)))
 
@@ -98,6 +90,7 @@
 								(side . left))
 	 (erc-mode-p display-buffer-reuse-mode-window
 				 (mode erc-mode))))
+ '(erc-fill-column 158)
  '(erc-interpret-mirc-color t)
  '(erc-modules
    '(autojoin button completion dcc fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring smiley stamp track))
