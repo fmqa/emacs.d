@@ -29,6 +29,12 @@
 ;;    Can be swapped with dabbrev-expand if needed.
 (global-set-key (kbd "C-M-,") 'hippie-expand)
 
+;; Alternate windmove keys
+(global-set-key (kbd "C-s-<left>") 'windmove-left)
+(global-set-key (kbd "C-s-<right>") 'windmove-right)
+(global-set-key (kbd "C-s-<up>") 'windmove-up)
+(global-set-key (kbd "C-s-<down>") 'windmove-down)
+
 (with-eval-after-load 'which-key
   ;; Avoid conflict with which-key pager (Originally, this key is defined as `mark-defun')
   (global-unset-key (kbd "C-M-h"))
