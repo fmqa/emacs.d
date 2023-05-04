@@ -33,12 +33,6 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings '(control super)))
 
-(with-eval-after-load 'which-key
-  ;; Avoid conflict with which-key pager (Originally, this key is defined as `mark-defun')
-  (global-unset-key (kbd "C-M-h"))
-  ;; Avoid conflict with which-key pager (Originally, this key is defined as `help-for-help')
-  (global-unset-key (kbd "C-h C-h")))
-
 ;; Prettify checkboxes in org-mode
 (defun configure-prettify-symbols-controls ()
   (setq prettify-symbols-alist '(("[ ]" . "☐")
@@ -71,10 +65,6 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; Install which-key if unavailable
-(unless (package-installed-p 'which-key)
-  (package-install 'which-key))
-
 (unless (package-installed-p 'dracula-theme)
   (package-install 'dracula-theme))
 
@@ -105,13 +95,11 @@
  '(initial-major-mode 'org-mode)
  '(initial-scratch-message nil)
  '(org-replace-disputed-keys t)
- '(package-selected-packages '(which-key))
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(undo-no-redo t)
- '(which-key-mode t)
  '(whitespace-display-mappings
    '((space-mark 32
 				 [183]
