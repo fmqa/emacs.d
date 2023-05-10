@@ -29,7 +29,6 @@ _Links_ denote external packages
 * `whitespace-mode` to visualize trailing whitespace & tab indentations
 * `vertical-fido-mode` for improved completion & discoverability
 * `recentf-mode` to reopen past edits
-* [which-key](https://github.com/justbur/emacs-which-key) for discoverability
 
 # Cheat Sheet
 
