@@ -51,9 +51,9 @@ Entries with _emphasis_ are custom bindings
   - `C-u <N> C-S-Left` Mark N words backward
   - `C-SPC C-s <STR>` Mark until string
   - `C-SPC C-s <STR>` Mark until string backwards
-  - `C-; C-j` _Join lines_
-  - `C-; C-;` _Simple autocompletion_
-  - `C-; C-.` _Show possible completions_
+  - `M-q` _Join lines_
+  - `M-/` _Simple autocompletion_
+  - `C-M-/` _Show possible completions_
   - `C-M-,` _Smart autocompletion_
   - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
   - `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
