@@ -54,7 +54,7 @@ Entries with _emphasis_ are custom bindings
   - `M-q` _Join lines_
   - `M-/` _Simple autocompletion_
   - `C-M-/` _Show possible completions_
-  - `C-M-,` _Smart autocompletion_
+  - `C-x C-/` _Smart autocompletion_
   - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
   - `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
   - `C-x r i` Insert register
