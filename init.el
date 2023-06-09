@@ -14,7 +14,7 @@
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
 ;; Accessible keybind for hippie-expand
-(global-set-key (kbd "C-M-,") 'hippie-expand)
+(global-set-key (kbd "C-x C-/") 'hippie-expand)
 
 ;; Alternate windmove keys
 (when (fboundp 'windmove-default-keybindings)
