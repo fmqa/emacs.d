@@ -66,6 +66,7 @@
  '(custom-safe-themes
    '("f681100b27d783fefc3b62f44f84eb7fa0ce73ec183ebea5903df506eb314077" default))
  '(desktop-save-mode t)
+ '(dired-kill-when-opening-new-dired-buffer t)
  '(display-buffer-alist
    '((erc-status-sidebar-mode-p display-buffer-in-side-window
 								(side . left))
