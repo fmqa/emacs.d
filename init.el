@@ -83,6 +83,7 @@
  '(initial-major-mode 'org-mode)
  '(initial-scratch-message nil)
  '(isearch-lazy-count t)
+ '(menu-bar-mode nil)
  '(org-replace-disputed-keys t)
  '(package-selected-packages '(dracula-theme))
  '(prettify-symbols-unprettify-at-point 'right-edge)
