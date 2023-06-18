@@ -1,9 +1,9 @@
 ;; Bind Ctrl+Menu to open the global menu
-(global-set-key (kbd "M-<menu>") 'menu-bar-open)
+(global-set-key (kbd "C-<menu>") 'menu-bar-open)
 ;; Easily access recentf functionality with menu keybinds
-(global-set-key (kbd "C-<menu> o") 'recentf-open-files)
-(global-set-key (kbd "C-<menu> e") 'recentf-edit-list)
-(global-set-key (kbd "C-<menu> c") 'recentf-cleanup)
+(global-set-key (kbd "C-x <menu> o") 'recentf-open-files)
+(global-set-key (kbd "C-x <menu> e") 'recentf-edit-list)
+(global-set-key (kbd "C-x <menu> c") 'recentf-cleanup)
 
 ;; Line numbers
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
