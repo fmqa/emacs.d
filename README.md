@@ -36,10 +36,10 @@ Entries with _emphasis_ are custom bindings
 
 - General
   - `≣` Enter command
-  - `M-≣` _Opens the global menu_
-  - `C-≣ o` _Opens the "recent files" list_
-  - `C-≣ e` _Edit the "recent files" list_
-  - `C-≣ c` _Clear the "recent files" list_
+  - `C-≣` _Opens the global menu_
+  - `C-x ≣ o` _Opens the "recent files" list_
+  - `C-x ≣ e` _Edit the "recent files" list_
+  - `C-x ≣ c` _Clear the "recent files" list_
   - `C-z, C-/, C-_, C-x u` Undo
   - `C-?` Redo
   - `C-x h` Select all
