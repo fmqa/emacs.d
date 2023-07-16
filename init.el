@@ -4,8 +4,6 @@
 (global-set-key (kbd "C-x <menu> o") 'recentf-open-files)
 (global-set-key (kbd "C-x <menu> e") 'recentf-edit-list)
 (global-set-key (kbd "C-x <menu> c") 'recentf-cleanup)
-;; Open buffer selection menu if the buffer name is ctrl-clicked
-(global-set-key (kbd "<mode-line> C-<mouse-1>") 'mouse-buffer-menu)
 
 ;; Line numbers
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
