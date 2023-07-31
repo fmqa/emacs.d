@@ -54,9 +54,6 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(unless (package-installed-p 'dracula-theme)
-  (package-install 'dracula-theme))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -65,9 +62,7 @@
  '(column-number-mode t)
  '(completion-auto-select 'second-tab)
  '(cua-mode t)
- '(custom-enabled-themes '(dracula))
- '(custom-safe-themes
-   '("8721f7ee8cd0c2e56d23f757b44c39c249a58c60d33194fe546659dabc69eebd" default))
+ '(custom-enabled-themes '(leuven-dark))
  '(desktop-save-mode t)
  '(dired-kill-when-opening-new-dired-buffer t)
  '(display-buffer-alist
@@ -82,13 +77,13 @@
  '(fido-vertical-mode t)
  '(global-goto-address-mode t)
  '(global-whitespace-mode t)
+ '(go-ts-mode-indent-offset 4)
  '(inhibit-startup-screen t)
  '(initial-major-mode 'org-mode)
  '(initial-scratch-message nil)
  '(isearch-lazy-count t)
  '(menu-bar-mode nil)
  '(org-replace-disputed-keys t)
- '(package-selected-packages '(dracula-theme))
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
  '(tab-width 4)
@@ -109,11 +104,4 @@
  '(whitespace-global-modes '(not erc-mode))
  '(whitespace-style
    '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(whitespace-indentation ((t nil)))
- '(whitespace-tab ((t (:background "#282a36" :foreground "#3d4766")))))
 (put 'narrow-to-region 'disabled nil)
