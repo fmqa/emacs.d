@@ -4,6 +4,8 @@
 (global-set-key (kbd "C-x <menu> o") 'recentf-open-files)
 (global-set-key (kbd "C-x <menu> e") 'recentf-edit-list)
 (global-set-key (kbd "C-x <menu> c") 'recentf-cleanup)
+;; Bind duplicate-dwin as recommended by mickeyp
+(global-set-key (kbd "C-x j") 'duplicate-dwim)
 
 ;; Line numbers
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
@@ -61,10 +63,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(completion-auto-select 'second-tab)
  '(cua-mode t)
  '(custom-enabled-themes '(dracula))
  '(custom-safe-themes
-   '("f681100b27d783fefc3b62f44f84eb7fa0ce73ec183ebea5903df506eb314077" default))
+   '("8721f7ee8cd0c2e56d23f757b44c39c249a58c60d33194fe546659dabc69eebd" default))
  '(desktop-save-mode t)
  '(dired-kill-when-opening-new-dired-buffer t)
  '(display-buffer-alist
@@ -75,7 +78,7 @@
  '(erc-fill-column 158)
  '(erc-interpret-mirc-color t)
  '(erc-modules
-   '(autojoin button completion dcc fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring smiley stamp track))
+   '(autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp track))
  '(fido-vertical-mode t)
  '(global-goto-address-mode t)
  '(global-whitespace-mode t)
@@ -113,3 +116,4 @@
  ;; If there is more than one, they won't work right.
  '(whitespace-indentation ((t nil)))
  '(whitespace-tab ((t (:background "#282a36" :foreground "#3d4766")))))
+(put 'narrow-to-region 'disabled nil)
