@@ -40,20 +40,6 @@
 (defun erc-status-sidebar-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-status-sidebar-mode)))
 (defun erc-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-mode)))
 
-;; MELPA
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-
-;; Initialize package management
-(package-initialize)
-
-;; Update packages if on a new install
-(unless package-archive-contents
-  (package-refresh-contents))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
