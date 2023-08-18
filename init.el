@@ -6,6 +6,12 @@
 (global-set-key (kbd "C-x <menu> c") 'recentf-cleanup)
 ;; Bind duplicate-dwin as recommended by mickeyp
 (global-set-key (kbd "C-x j") 'duplicate-dwim)
+;; Bind right-click/mouse-3 to dired-mouse-find-file, as left-click/mouse-1
+;; is bound to dired-find-file-other-window
+(use-package dired
+  :ensure nil
+  :config
+  (define-key dired-mode-map [mouse-3] 'dired-mouse-find-file))
 
 ;; Line numbers
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
