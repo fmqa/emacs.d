@@ -51,9 +51,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-revert-avoid-polling t)
+ '(auto-revert-check-vc-info t)
  '(column-number-mode t)
  '(completion-auto-select 'second-tab)
- '(cua-mode t)
  '(custom-enabled-themes '(leuven-dark))
  '(desktop-save-mode t)
  '(dired-kill-when-opening-new-dired-buffer t)
@@ -67,6 +68,7 @@
  '(erc-modules
    '(autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp track))
  '(fido-vertical-mode t)
+ '(global-auto-revert-mode t)
  '(global-goto-address-mode t)
  '(global-whitespace-mode t)
  '(go-ts-mode-indent-offset 4)
