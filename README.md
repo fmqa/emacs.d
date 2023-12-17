@@ -23,7 +23,6 @@ This is my Emacs configuration. It's simple, (mostly) declarative, and discovera
 
 _Links_ denote external packages
 
-* `cua-mode` enabled (less mental overhead)
 * `desktop-save-mode` for simple session persistence
 * `undo-redo` for traditional undo behavior (requires Emacs 28+)
 * `whitespace-mode` to visualize trailing whitespace & tab indentations
@@ -40,10 +39,9 @@ Entries with _emphasis_ are custom bindings
   - `C-x ≣ o` _Opens the "recent files" list_
   - `C-x ≣ e` _Edit the "recent files" list_
   - `C-x ≣ c` _Clear the "recent files" list_
-  - `C-z, C-/, C-_, C-x u` Undo
+  - `C-/, C-_, C-x u` Undo
   - `C-?` Redo
   - `C-x h` Select all
-  - `C-RET` Block selection (CUA)
   - `C-SPACE` Block selection (Classic)
   - `C-u <N> C-DEL` Delete N words forward
   - `C-u <N> C-BCKSP` Delete N word backward
@@ -52,10 +50,11 @@ Entries with _emphasis_ are custom bindings
   - `C-SPC C-s <STR>` Mark until string
   - `C-SPC C-s <STR>` Mark until string backwards
   - `M-q` _Join lines_
+  - `C-x j` _Duplicate line_
   - `M-/` _Simple autocompletion_
   - `C-M-/` _Show possible completions_
   - `C-x C-/` _Smart autocompletion_
-  - `C-x C-x (rapidly) r s` `C-S-x` Copy to register
-  - `C-x C-x (rapidly) r t` `C-S-x r t` Insert text before rectangle
+  - `C-x C-x r s`  Copy to register
+  - `C-x C-x r t` Insert text before rectangle
   - `C-x r i` Insert register
 
