@@ -78,6 +78,7 @@
  '(isearch-lazy-count t)
  '(menu-bar-mode nil)
  '(org-replace-disputed-keys t)
+ '(pixel-scroll-precision-mode t)
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
  '(tab-width 4)
