@@ -6,12 +6,6 @@
 (global-set-key (kbd "C-x <menu> c") 'recentf-cleanup)
 ;; Bind duplicate-dwin as recommended by mickeyp
 (global-set-key (kbd "C-x j") 'duplicate-dwim)
-;; Bind right-click/mouse-3 to dired-mouse-find-file, as left-click/mouse-1
-;; is bound to dired-find-file-other-window
-(use-package dired
-  :ensure nil
-  :config
-  (define-key dired-mode-map [mouse-3] 'dired-mouse-find-file))
 
 ;; Line numbers
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
@@ -55,6 +49,7 @@
  '(auto-revert-check-vc-info t)
  '(column-number-mode t)
  '(completion-auto-select 'second-tab)
+ '(context-menu-mode t)
  '(custom-enabled-themes '(leuven-dark))
  '(desktop-save-mode t)
  '(dired-kill-when-opening-new-dired-buffer t)
@@ -80,6 +75,7 @@
  '(menu-bar-mode nil)
  '(minibuffer-depth-indicate-mode t)
  '(org-replace-disputed-keys t)
+ '(package-selected-packages '(markdown-mode))
  '(pixel-scroll-precision-mode t)
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
