@@ -13,7 +13,7 @@
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
 ;; Electric pairs
-(add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'prog-mode-hook 'electric-pair-local-mode)
 
 ;; Accessible keybind for hippie-expand
 (global-set-key (kbd "C-x C-/") 'hippie-expand)
