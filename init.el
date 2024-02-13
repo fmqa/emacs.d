@@ -36,10 +36,6 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 (add-hook 'scheme-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 
-;; ERC: Predicates for buffer mode checks
-(defun erc-status-sidebar-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-status-sidebar-mode)))
-(defun erc-mode-p (buffer alist) (with-current-buffer buffer (derived-mode-p 'erc-mode)))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -52,16 +48,12 @@
  '(custom-enabled-themes '(leuven-dark))
  '(desktop-save-mode t)
  '(dired-kill-when-opening-new-dired-buffer t)
- '(display-buffer-alist
-   '((erc-status-sidebar-mode-p display-buffer-in-side-window
-								(side . left))
-	 (erc-mode-p display-buffer-reuse-mode-window
-				 (mode erc-mode))))
  '(enable-recursive-minibuffers t)
- '(erc-fill-column 158)
+ '(erc-fill-function 'erc-fill-wrap)
  '(erc-interpret-mirc-color t)
  '(erc-modules
-   '(autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp track))
+   '(autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom stamp track))
+ '(erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
  '(fido-vertical-mode t)
  '(global-auto-revert-mode t)
  '(global-goto-address-mode t)
@@ -74,7 +66,12 @@
  '(menu-bar-mode nil)
  '(minibuffer-depth-indicate-mode t)
  '(org-replace-disputed-keys t)
- '(package-selected-packages '(markdown-mode))
+ '(package-archive-priorities '(("gnu-devel" . -1)))
+ '(package-archives
+   '(("gnu" . "https://elpa.gnu.org/packages/")
+	 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+	 ("gnu-devel" . "https://elpa.gnu.org/devel/")))
+ '(package-selected-packages '(erc markdown-mode))
  '(pixel-scroll-precision-mode t)
  '(prettify-symbols-unprettify-at-point 'right-edge)
  '(recentf-mode t)
