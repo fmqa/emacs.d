@@ -12,6 +12,10 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'conf-mode-hook 'display-line-numbers-mode)
 
+;; URLs are already buttonized by `erc-button'
+(defun disable-goto-address-mode () (goto-address-mode 0))
+(add-hook 'erc-mode-hook 'disable-goto-address-mode)
+
 ;; Electric pairs
 (add-hook 'prog-mode-hook 'electric-pair-local-mode)
 
@@ -54,7 +58,7 @@
  '(erc-modules
    '(autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom stamp track))
  '(erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
- '(erc-timestamp-format "​​ [%H:%M]")
+ '(erc-timestamp-format " [%H:%M]")
  '(fido-vertical-mode t)
  '(global-auto-revert-mode t)
  '(global-goto-address-mode t)
