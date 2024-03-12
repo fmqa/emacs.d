@@ -1,3 +1,5 @@
+(require 'xdg)
+
 ;; Bind Ctrl+Menu to open the global menu
 (global-set-key (kbd "C-<menu>") 'menu-bar-open)
 ;; Easily access recentf functionality with menu keybinds
@@ -39,6 +41,12 @@
 (add-hook 'lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
 (add-hook 'scheme-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
+
+;; Load additional user-specific configuration
+(let* ((emacs-user-dir (file-name-concat (xdg-config-home) "emacs.user.d"))
+       (emacs-user-dir-init (file-name-concat emacs-user-dir "init.el")))
+  (when (file-exists-p emacs-user-dir-init)
+    (load emacs-user-dir-init)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
