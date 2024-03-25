@@ -48,6 +48,39 @@
   (when (file-exists-p emacs-user-dir-init)
     (load emacs-user-dir-init)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Security stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; BEGIN https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; See: https://www.gnu.org/software/emacs/manual/html_node/emacs-mime/Display-Customization.html#Display-Customization
+
+(setopt gnus-inhibit-images t)
+(setopt mm-html-inhibit-images t)
+(setopt mm-enable-external 'ask)
+(setopt mm-discouraged-alternatives '("text/html" "text/richtext" "text/enriched" "image/.*"))
+(setopt mailcap-download-directory "/tmp")
+
+(setopt mm-automatic-display '("text/plain"))
+(setopt mm-inlined-types '("text/plain" "text/html"))
+(setopt mm-inline-tests
+        `(("text/plain" mm-inline-text identity)
+          ("text/html"
+           mm-inline-text-html
+           ,(lambda (_handle)
+              mm-text-html-renderer))
+          (".*" ignore identity)))
+(setopt mailcap-user-mime-data '(("xdg-open %s" ".*")))
+
+(setopt gnus-buttonized-mime-types
+        '("multipart/alternative" "multipart/encrypted" "multipart/signed" ".*/signed"
+          "text/x-org" "text/richtext" "text/enriched"))
+
+;; END https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Security stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
