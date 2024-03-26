@@ -99,7 +99,6 @@
  '(erc-modules
    '(autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom stamp track))
  '(erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
- '(erc-timestamp-format " [%H:%M]")
  '(fido-vertical-mode t)
  '(global-auto-revert-mode t)
  '(global-goto-address-mode t)
