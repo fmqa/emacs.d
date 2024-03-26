@@ -53,8 +53,6 @@
 
 ;; BEGIN https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; See: https://www.gnu.org/software/emacs/manual/html_node/emacs-mime/Display-Customization.html#Display-Customization
-
 (setopt gnus-inhibit-images t)
 (setopt mm-html-inhibit-images t)
 (setopt mm-enable-external 'ask)
