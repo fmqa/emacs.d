@@ -8,6 +8,8 @@
 (global-set-key (kbd "C-x <menu> c") 'recentf-cleanup)
 ;; Bind duplicate-dwin as recommended by mickeyp
 (global-set-key (kbd "C-x j") 'duplicate-dwim)
+;; Search through manuals
+(global-set-key (kbd "C-h A") 'info-apropos)
 
 ;; Line numbers
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
