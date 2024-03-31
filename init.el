@@ -1,59 +1,120 @@
-(require 'xdg)
+;; Add devel elpa
+(use-package package
+  :custom
+  (package-archive-priorities '(("gnu-devel" . -1)))
+  :config
+  (add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel/")))
+
+;; Ensure `markdown-mode' is installed for prettier eglot docs
+(use-package markdown-mode
+  :defer t
+  :ensure t)
 
 ;; Bind Ctrl+Menu to open the global menu
-(global-set-key (kbd "C-<menu>") 'menu-bar-open)
-;; Easily access recentf functionality with menu keybinds
-(global-set-key (kbd "C-x <menu> o") 'recentf-open-files)
-(global-set-key (kbd "C-x <menu> e") 'recentf-edit-list)
-(global-set-key (kbd "C-x <menu> c") 'recentf-cleanup)
+(use-package menu-bar
+  :bind ("C-<menu>" . menu-bar-open))
+
 ;; Bind duplicate-dwin as recommended by mickeyp
-(global-set-key (kbd "C-x j") 'duplicate-dwim)
+(use-package misc
+  :bind ("C-x j" . duplicate-dwim))
+
+;; Easily access recentf functionality with menu keybinds
+(use-package recentf
+  :bind (("C-x <menu> o" . recentf-open-files)
+         ("C-x <menu> e" . recentf-edit-list)
+         ("C-x <menu> c" . recentf-cleanup))
+  :custom
+  (recentf-mode t))
 
 ;; Line numbers
-(add-hook 'text-mode-hook 'display-line-numbers-mode)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'conf-mode-hook 'display-line-numbers-mode)
+(use-package display-line-numbers-mode
+  :hook (text-mode prog-mode conf-mode))
 
-;; URLs are already buttonized by `erc-button'
-(defun disable-goto-address-mode () (goto-address-mode 0))
-(add-hook 'erc-mode-hook 'disable-goto-address-mode)
+;; Hyperlink buttonization
+(use-package goto-addr
+  :hook ((compilation-mode . goto-address-mode)
+         (prog-mode . goto-address-prog-mode)
+         (conf-mode . goto-address-mode)
+         (text-mode . goto-address-mode)
+         (eshell-mode . goto-address-mode)
+         (shell-mode . goto-address-mode)))
 
 ;; Electric pairs
-(add-hook 'prog-mode-hook 'electric-pair-local-mode)
+(use-package elec-pair
+  :hook ((prog-mode conf-mode) . electric-pair-local-mode))
 
 ;; Accessible keybind for hippie-expand
-(global-set-key (kbd "C-x C-/") 'hippie-expand)
+(use-package hippie-expand
+  :bind ("C-x C-/" . hippie-expand))
 
-;; Alternate windmove keys
-(when (fboundp 'windmove-default-keybindings)
-  (windmove-default-keybindings '(control super)))
+;; Set windowmove prefix to C-x w
+(use-package windmove
+  :custom (windmove-default-keybindings '([24 119])))
 
 ;; Prettify checkboxes in org-mode
-(defun configure-prettify-symbols-controls ()
-  (setq prettify-symbols-alist '(("[ ]" . "☐")
-                                 ("[X]" . "☑")
-                                 ("[-]" . "⊟"))))
-(add-hook 'org-mode-hook (lambda () (configure-prettify-symbols-controls) (prettify-symbols-mode)))
+(use-package prog-mode
+  :hook ((prog-mode . prettify-symbols-mode)
+         (org-mode . (lambda () (setq prettify-symbols-alist
+                                 (append '(("[ ]" . "☐")
+                                           ("[X]" . "☑")
+                                           ("[-]" . "⊟"))
+                                         prettify-symbols-alist))
+                       (prettify-symbols-mode 1)))))
 
-;; DrScheme-like lambdas for LISPs
-(defun configure-prettify-symbols-lisps ()
-  (setq prettify-symbols-alist '(("lambda" . "λ"))))
-(add-hook 'lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
-(add-hook 'emacs-lisp-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
-(add-hook 'scheme-mode-hook (lambda () (configure-prettify-symbols-lisps) (prettify-symbols-mode)))
+(use-package erc
+  :if (package-installed-p 'erc '(5 6 -4))
+  :defer t
+  :custom
+  (erc-fill-function 'erc-fill-wrap)
+  (erc-interpret-mirc-color t)
+  (erc-modules
+   '(autoaway autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom services stamp track))
+  (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
 
-;; Load additional user-specific configuration
-(let* ((emacs-user-dir (file-name-concat (xdg-config-home) "emacs.user.d"))
-       (emacs-user-dir-init (file-name-concat emacs-user-dir "init.el")))
-  (when (file-exists-p emacs-user-dir-init)
-    (load emacs-user-dir-init)))
+(use-package gnus-sum
+  :defer t
+  :custom
+  (gnus-auto-select-first nil)
+  (gnus-sum-thread-tree-false-root "")
+  (gnus-sum-thread-tree-indent " ")
+  (gnus-sum-thread-tree-leaf-with-other "├► ")
+  (gnus-sum-thread-tree-root "")
+  (gnus-sum-thread-tree-single-leaf "╰► ")
+  (gnus-sum-thread-tree-vertical "│")
+  (gnus-summary-display-arrow nil)
+  (gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B (%c) %s%)\12")
+  (gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
+  (gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
+  (gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))))
+
+(use-package gnus-art
+  :defer t
+  :custom
+  (gnus-article-browse-delete-temp t)
+  (gnus-inhibit-images t)
+  (gnus-mime-display-multipart-related-as-mixed t)
+  (gnus-treat-strip-trailing-blank-lines 'last))
+
+(use-package gnus-start
+  :defer t
+  :custom
+  (gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[”]”[#’()]"))
+
+(use-package gnus-group
+  :defer t
+  :custom
+  (gnus-group-line-format "%M%S%p%P%5y:%B %G\12"))
+
+(use-package gnus
+  :defer t
+  :custom
+  (gnus-keep-backlog 0))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Security stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; BEGIN https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setopt gnus-inhibit-images t)
 (setopt mm-html-inhibit-images t)
 (setopt mm-enable-external 'ask)
 (setopt mm-discouraged-alternatives '("text/html" "text/richtext" "text/enriched" "image/.*"))
@@ -79,6 +140,12 @@
 ;; Security stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Load additional user-specific configuration
+(require 'xdg)
+(let ((emacs-user-init (file-name-concat (xdg-config-home) "emacs.user.d" "init.el")))
+  (when (file-exists-p emacs-user-init)
+    (load emacs-user-init)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -92,34 +159,9 @@
  '(desktop-save-mode t)
  '(dired-kill-when-opening-new-dired-buffer t)
  '(enable-recursive-minibuffers t)
- '(erc-fill-function 'erc-fill-wrap)
- '(erc-interpret-mirc-color t)
- '(erc-modules
-   '(autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom stamp track))
- '(erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
  '(fido-vertical-mode t)
  '(global-auto-revert-mode t)
- '(global-goto-address-mode t)
  '(global-whitespace-mode t)
- '(gnus-article-browse-delete-temp t)
- '(gnus-auto-select-first nil)
- '(gnus-group-line-format "%M%S%p%P%5y:%B %G\12")
- '(gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[”]”[#’()]")
- '(gnus-keep-backlog 0)
- '(gnus-mime-display-multipart-related-as-mixed t)
- '(gnus-sum-thread-tree-false-root "")
- '(gnus-sum-thread-tree-indent " ")
- '(gnus-sum-thread-tree-leaf-with-other "├► ")
- '(gnus-sum-thread-tree-root "")
- '(gnus-sum-thread-tree-single-leaf "╰► ")
- '(gnus-sum-thread-tree-vertical "│")
- '(gnus-summary-display-arrow nil)
- '(gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B (%c) %s%)\12")
- '(gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references)
- '(gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
- '(gnus-treat-strip-trailing-blank-lines 'last)
- '(gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M")))
- '(go-ts-mode-indent-offset 4)
  '(inhibit-startup-screen t)
  '(initial-major-mode 'org-mode)
  '(initial-scratch-message nil)
@@ -129,38 +171,25 @@
  '(message-mail-user-agent t)
  '(minibuffer-depth-indicate-mode t)
  '(org-replace-disputed-keys t)
- '(package-archive-priorities '(("gnu-devel" . -1)))
- '(package-archives
-   '(("gnu" . "https://elpa.gnu.org/packages/")
-	 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-	 ("gnu-devel" . "https://elpa.gnu.org/devel/")))
- '(package-selected-packages '(erc markdown-mode))
  '(pixel-scroll-precision-mode t)
  '(prettify-symbols-unprettify-at-point 'right-edge)
- '(recentf-mode t)
  '(ring-bell-function 'ignore)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(undo-no-redo t)
  '(whitespace-display-mappings
    '((space-mark 32
-				 [183]
-				 [46])
-	 (space-mark 160
-				 [164]
-				 [95])
-	 (newline-mark 10
-				   [36 10])
-	 (tab-mark 9
-			   [10095 9]
-			   [92 9])))
+                 [183]
+                 [46])
+     (space-mark 160
+                 [164]
+                 [95])
+     (newline-mark 10
+                   [36 10])
+     (tab-mark 9
+               [10095 9]
+               [92 9])))
  '(whitespace-global-modes '(not erc-mode))
  '(whitespace-style
    '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
 (put 'narrow-to-region 'disabled nil)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
