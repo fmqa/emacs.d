@@ -8,7 +8,7 @@ This is my Emacs configuration. It's simple, (mostly) declarative, and discovera
 
 # Principles
 
-* _Configure declaratively_: Prefer `easy-customize` over other configuration methods
+* _Configure declaratively_: Prefer `use-package' and `easy-customize` over other configuration methods
 * _Keep it simple_: Apply KISS; The `init.el` should be simple enough to be read by a novice
 * _Keep the overhead low_: Install only the neccessary 3rd-party packages
 * _Use the included batteries_: The standard Emacs packages are tested & curated by the Emacs community, use them!
@@ -29,32 +29,16 @@ _Links_ denote external packages
 * `vertical-fido-mode` for improved completion & discoverability
 * `recentf-mode` to reopen past edits
 
-# Cheat Sheet
+# Custom keybinds
 
-Entries with _emphasis_ are custom bindings
+The following key bindings are registered by this configuration:
 
-- General
-  - `≣` Enter command
-  - `C-≣` _Opens the global menu_
-  - `C-x ≣ o` _Opens the "recent files" list_
-  - `C-x ≣ e` _Edit the "recent files" list_
-  - `C-x ≣ c` _Clear the "recent files" list_
-  - `C-/, C-_, C-x u` Undo
-  - `C-?` Redo
-  - `C-x h` Select all
-  - `C-SPACE` Block selection (Classic)
-  - `C-u <N> C-DEL` Delete N words forward
-  - `C-u <N> C-BCKSP` Delete N word backward
-  - `C-u <N> M-@` `C-u <N> C-S-Right` Mark N words forward
-  - `C-u <N> C-S-Left` Mark N words backward
-  - `C-SPC C-s <STR>` Mark until string
-  - `C-SPC C-s <STR>` Mark until string backwards
-  - `M-^` _Join lines_
-  - `C-x j` _Duplicate line_
-  - `M-/` _Simple autocompletion_
-  - `C-M-/` _Show possible completions_
-  - `C-x C-/` _Smart autocompletion_
-  - `C-x r s`  Copy to register
-  - `C-x r t` Insert text before rectangle
-  - `C-x r i` Insert register
+* `C-x ≣` or `C-x <menu>` is used a prefix key for recentf
+  * `C-x <menu> o` Open recentf menu (`recentf-open-files`)
+  * `C-x <menu> e` Edit recentf list (`recentf-edit-list`)
+  * `C-x <menu> c` Cleanup recentf list (`recentf-cleanup`)
+* `C-x j` duplicates a line via `duplicate-dwim`
+* `C-x C-/` completes via `hippie-expand`
+* `C-x w` is set to the windmove prefix
+  * `C-x w <up>` `C-x w <down>` `C-x w <left>` `C-x w <right>` moves to the next window in the specified direction
 
