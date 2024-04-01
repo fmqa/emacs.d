@@ -8,7 +8,7 @@ This is my Emacs configuration. It's simple, (mostly) declarative, and discovera
 
 # Principles
 
-* _Configure declaratively_: Prefer `use-package' and `easy-customize` over other configuration methods
+* _Configure declaratively_: Prefer `use-package` and `easy-customize` over other configuration methods
 * _Keep it simple_: Apply KISS; The `init.el` should be simple enough to be read by a novice
 * _Keep the overhead low_: Install only the neccessary 3rd-party packages
   * `markdown-mode` is installed for pretty-printed `eglot` documentation, and for markdown formatting.
