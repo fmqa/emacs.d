@@ -162,6 +162,7 @@
  '(fido-vertical-mode t)
  '(global-auto-revert-mode t)
  '(global-whitespace-mode t)
+ '(ibuffer-save-with-custom nil)
  '(inhibit-startup-screen t)
  '(initial-major-mode 'org-mode)
  '(initial-scratch-message nil)
@@ -179,16 +180,16 @@
  '(undo-no-redo t)
  '(whitespace-display-mappings
    '((space-mark 32
-                 [183]
-                 [46])
-     (space-mark 160
-                 [164]
-                 [95])
-     (newline-mark 10
-                   [36 10])
-     (tab-mark 9
-               [10095 9]
-               [92 9])))
+				 [183]
+				 [46])
+	 (space-mark 160
+				 [164]
+				 [95])
+	 (newline-mark 10
+				   [36 10])
+	 (tab-mark 9
+			   [10095 9]
+			   [92 9])))
  '(whitespace-global-modes '(not erc-mode))
  '(whitespace-style
    '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
