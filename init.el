@@ -14,7 +14,7 @@
 (use-package menu-bar
   :bind ("C-<menu>" . menu-bar-open))
 
-;; Bind duplicate-dwin as recommended by mickeyp
+;; Bind duplicate-dwim as recommended by mickeyp
 (use-package misc
   :bind ("C-x j" . duplicate-dwim))
 
