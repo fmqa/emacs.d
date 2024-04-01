@@ -11,6 +11,7 @@ This is my Emacs configuration. It's simple, (mostly) declarative, and discovera
 * _Configure declaratively_: Prefer `use-package' and `easy-customize` over other configuration methods
 * _Keep it simple_: Apply KISS; The `init.el` should be simple enough to be read by a novice
 * _Keep the overhead low_: Install only the neccessary 3rd-party packages
+  * `markdown-mode` is installed for pretty-printed `eglot` documentation, and for markdown formatting.
 * _Use the included batteries_: The standard Emacs packages are tested & curated by the Emacs community, use them!
 * _Retain the defaults as much as possible_: We try to keep the default keybinds as much as possible and avoid rebinding everything
 
