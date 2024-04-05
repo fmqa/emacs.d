@@ -42,4 +42,7 @@ The following key bindings are registered by this configuration:
 * `C-x C-/` completes via `hippie-expand`
 * `C-x w` is set to the windmove prefix
   * `C-x w <up>` `C-x w <down>` `C-x w <left>` `C-x w <right>` moves to the next window in the specified direction
+* `C-x w` also contains additional `windmove.el` keybindings
+  * `C-x w C-/` `C-x w C-_` and `C-x w C-_` are bound to `winner-undo`
+  * `C-x w C-?` and `C-x w C-?` are bound to `winner-redo`
 
