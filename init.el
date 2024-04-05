@@ -51,6 +51,16 @@
 (use-package windmove
   :custom (windmove-default-keybindings '([24 119])))
 
+(use-package winner
+  :bind (("C-x w C-/" . winner-undo)
+         ("C-x w C-_" . winner-undo)
+         ("C-x w <undo>" . winner-undo)
+         ("C-x w C-?" . winner-redo)
+         ("C-x w C-M-_" . winner-redo))
+  :custom
+  (winner-mode t)
+  (winner-dont-bind-my-keys t))
+
 ;; Prettify checkboxes in org-mode
 (use-package prog-mode
   :hook ((prog-mode . prettify-symbols-mode)
