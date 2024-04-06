@@ -1,5 +1,6 @@
 ;; Add devel elpa
 (use-package package
+  :defer t
   :custom
   (package-archive-priorities '(("gnu-devel" . -1)))
   :config
@@ -12,12 +13,14 @@
 
 ;; Better dired defaults
 (use-package dired
+  :defer t
   :custom
   (dired-kill-when-opening-new-dired-buffer t)
   (dired-dwim-target t))
 
 ;; Automatically refresh modified file buffers
 (use-package autorevert
+  :defer t
   :custom
   (global-auto-revert-mode t)
   (auto-revert-avoid-polling t)
@@ -25,14 +28,17 @@
 
 ;; Bind Ctrl+Menu to open the global menu
 (use-package menu-bar
+  :defer t
   :bind ("C-<menu>" . menu-bar-open))
 
 ;; Bind duplicate-dwim as recommended by mickeyp
 (use-package misc
+  :defer t
   :bind ("C-x j" . duplicate-dwim))
 
 ;; Easily access recentf functionality with menu keybinds
 (use-package recentf
+  :defer t
   :bind (("C-x <menu> o" . recentf-open-files)
          ("C-x <menu> e" . recentf-edit-list)
          ("C-x <menu> c" . recentf-cleanup))
@@ -41,10 +47,12 @@
 
 ;; Line numbers
 (use-package display-line-numbers-mode
+  :defer t
   :hook (text-mode prog-mode conf-mode))
 
 ;; Hyperlink buttonization
 (use-package goto-addr
+  :defer t
   :hook ((compilation-mode . goto-address-mode)
          (prog-mode . goto-address-prog-mode)
          (conf-mode . goto-address-mode)
@@ -54,17 +62,21 @@
 
 ;; Electric pairs
 (use-package elec-pair
+  :defer t
   :hook ((prog-mode conf-mode) . electric-pair-local-mode))
 
 ;; Accessible keybind for hippie-expand
 (use-package hippie-expand
+  :defer t
   :bind ("C-x C-/" . hippie-expand))
 
 ;; Set windowmove prefix to C-x w
 (use-package windmove
+  :defer t
   :custom (windmove-default-keybindings '([24 119])))
 
 (use-package winner
+  :defer t
   :bind (("C-x w C-/" . winner-undo)
          ("C-x w C-_" . winner-undo)
          ("C-x w <undo>" . winner-undo)
@@ -76,6 +88,7 @@
 
 ;; Prettify checkboxes in org-mode
 (use-package prog-mode
+  :defer t
   :hook ((prog-mode . prettify-symbols-mode)
          (org-mode . (lambda () (setq prettify-symbols-alist
                                  (append '(("[ ]" . "☐")
