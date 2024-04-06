@@ -10,6 +10,19 @@
   :defer t
   :ensure t)
 
+;; Better dired defaults
+(use-package dired
+  :custom
+  (dired-kill-when-opening-new-dired-buffer t)
+  (dired-dwim-target t))
+
+;; Automatically refresh modified file buffers
+(use-package autorevert
+  :custom
+  (global-auto-revert-mode t)
+  (auto-revert-avoid-polling t)
+  (auto-revert-check-vc-info t))
+
 ;; Bind Ctrl+Menu to open the global menu
 (use-package menu-bar
   :bind ("C-<menu>" . menu-bar-open))
@@ -161,16 +174,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-revert-avoid-polling t)
- '(auto-revert-check-vc-info t)
  '(column-number-mode t)
  '(completion-auto-select 'second-tab)
  '(custom-enabled-themes '(leuven-dark))
  '(desktop-save-mode t)
- '(dired-kill-when-opening-new-dired-buffer t)
  '(enable-recursive-minibuffers t)
  '(fido-vertical-mode t)
- '(global-auto-revert-mode t)
  '(global-whitespace-mode t)
  '(ibuffer-save-with-custom nil)
  '(inhibit-startup-screen t)
@@ -190,16 +199,16 @@
  '(undo-no-redo t)
  '(whitespace-display-mappings
    '((space-mark 32
-				 [183]
-				 [46])
-	 (space-mark 160
-				 [164]
-				 [95])
-	 (newline-mark 10
-				   [36 10])
-	 (tab-mark 9
-			   [10095 9]
-			   [92 9])))
+                 [183]
+                 [46])
+     (space-mark 160
+                 [164]
+                 [95])
+     (newline-mark 10
+                   [36 10])
+     (tab-mark 9
+               [10095 9]
+               [92 9])))
  '(whitespace-global-modes '(not erc-mode))
  '(whitespace-style
    '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
