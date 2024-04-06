@@ -72,7 +72,6 @@
 
 ;; Set windowmove prefix to C-x w
 (use-package windmove
-  :defer t
   :custom (windmove-default-keybindings '([24 119])))
 
 (use-package winner
