@@ -104,6 +104,7 @@
   (erc-interpret-mirc-color t)
   (erc-modules
    '(autoaway autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom services stamp track))
+  (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
   (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
 
 (use-package gnus-sum
@@ -211,16 +212,16 @@
  '(undo-no-redo t)
  '(whitespace-display-mappings
    '((space-mark 32
-                 [183]
-                 [46])
-     (space-mark 160
-                 [164]
-                 [95])
-     (newline-mark 10
-                   [36 10])
-     (tab-mark 9
-               [10095 9]
-               [92 9])))
+				 [183]
+				 [46])
+	 (space-mark 160
+				 [164]
+				 [95])
+	 (newline-mark 10
+				   [36 10])
+	 (tab-mark 9
+			   [10095 9]
+			   [92 9])))
  '(whitespace-global-modes '(not erc-mode))
  '(whitespace-style
    '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
