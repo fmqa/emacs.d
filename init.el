@@ -31,6 +31,13 @@
   :defer t
   :bind ("C-<menu>" . menu-bar-open))
 
+;; DWIMify case transform commands
+(use-package simple
+  :defer t
+  :bind (("M-u" . upcase-dwim)
+		 ("M-l" . downcase-dwim)
+		 ("M-c" . capitalize-dwim)))
+
 ;; Bind duplicate-dwim as recommended by mickeyp
 (use-package misc
   :defer t
