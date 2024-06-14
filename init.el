@@ -1,11 +1,3 @@
-;; Add devel elpa
-(use-package package
-  :defer t
-  :custom
-  (package-archive-priorities '(("gnu-devel" . -1)))
-  :config
-  (add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel/")))
-
 ;; Ensure `markdown-mode' is installed for prettier eglot docs
 (use-package markdown-mode
   :defer t
@@ -35,8 +27,8 @@
 (use-package simple
   :defer t
   :bind (("M-u" . upcase-dwim)
-		 ("M-l" . downcase-dwim)
-		 ("M-c" . capitalize-dwim)))
+         ("M-l" . downcase-dwim)
+         ("M-c" . capitalize-dwim)))
 
 ;; Bind duplicate-dwim as recommended by mickeyp
 (use-package misc
@@ -104,7 +96,7 @@
                        (prettify-symbols-mode 1)))))
 
 (use-package erc
-  :if (package-installed-p 'erc '(5 6 -4))
+  :if (package-installed-p 'erc '(5 6))
   :defer t
   :custom
   (erc-fill-function 'erc-fill-wrap)
