@@ -4,7 +4,7 @@
 
 _Vanilla, discoverable Emacs configuration_
 
-This is my Emacs configuration. It's simple, (mostly) declarative, and discoverable. It requires **Emacs 29+**.
+This is my Emacs configuration. It's simple, declarative, and discoverable. It requires **Emacs 29+**.
 
 # Principles
 
@@ -32,7 +32,7 @@ _Links_ denote external packages
 
 # Custom keybinds
 
-The following key bindings are registered by this configuration:
+The following key bindings are registered by this configuration. These can be also shown inside Emacs using `M-x describe-personal-keybindings`:
 
 * `C-x ≣` or `C-x <menu>` is used a prefix key for recentf
   * `C-x <menu> o` Open recentf menu (`recentf-open-files`)
