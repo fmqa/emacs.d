@@ -22,8 +22,6 @@ This is my Emacs configuration. It's simple, declarative, and discoverable. It r
 
 # Features
 
-_Links_ denote external packages
-
 * `desktop-save-mode` for simple session persistence
 * `undo-redo` for traditional undo behavior (requires Emacs 28+)
 * `whitespace-mode` to visualize trailing whitespace & tab indentations
