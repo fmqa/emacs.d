@@ -34,7 +34,7 @@
   :custom
   (desktop-save-mode t)
   (desktop-load-locked-desktop nil)
-  (desktop-save 'if-exists))
+  (desktop-save nil))
 
 ;; Activate fancy minibuffer completion
 (use-package icomplete
