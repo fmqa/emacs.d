@@ -3,6 +3,45 @@
   :defer t
   :ensure t)
 
+;; Basic editing conveniences
+(use-package simple
+  :custom
+  (undo-no-redo t)
+  (column-number-mode t)
+  (completion-auto-select 'second-tab))
+
+;; More basic editing conveniences
+(use-package emacs
+  :custom
+  (ring-bell-function 'ignore)
+  (enable-recursive-minibuffers t))
+
+;; Show minibuffer depth
+(use-package mb-depth
+  :defer t
+  :custom
+  (minibuffer-depth-indicate-mode t))
+
+;; Incremental search
+(use-package isearch
+  :defer t
+  :custom
+  (isearch-lazy-count t))
+
+;; Make session management less annoying
+(use-package desktop
+  :defer t
+  :custom
+  (desktop-save-mode t)
+  (desktop-load-locked-desktop nil)
+  (desktop-save 'if-exists))
+
+;; Activate fancy minibuffer completion
+(use-package icomplete
+  :defer t
+  :custom
+  (fido-vertical-mode t))
+
 ;; Better dired defaults
 (use-package dired
   :defer t
@@ -186,29 +225,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(completion-auto-select 'second-tab)
  '(custom-enabled-themes '(leuven-dark))
- '(desktop-save-mode t)
- '(enable-recursive-minibuffers t)
- '(fido-vertical-mode t)
  '(global-whitespace-mode t)
  '(ibuffer-save-with-custom nil)
  '(inhibit-startup-screen t)
  '(initial-major-mode 'org-mode)
  '(initial-scratch-message nil)
- '(isearch-lazy-count t)
  '(mail-user-agent 'gnus-user-agent)
  '(menu-bar-mode nil)
  '(message-mail-user-agent t)
- '(minibuffer-depth-indicate-mode t)
  '(org-replace-disputed-keys t)
  '(pixel-scroll-precision-mode t)
  '(prettify-symbols-unprettify-at-point 'right-edge)
- '(ring-bell-function 'ignore)
  '(tab-width 4)
  '(tool-bar-mode nil)
- '(undo-no-redo t)
  '(whitespace-display-mappings
    '((space-mark 32
 				 [183]
