@@ -31,10 +31,11 @@
 ;; Make session management less annoying
 (use-package desktop
   :defer t
-  :custom
-  (desktop-save-mode t)
-  (desktop-load-locked-desktop nil)
-  (desktop-save nil))
+  :bind (("C-x <menu> d s" . desktop-save)
+         ("C-x <menu> d r" . desktop-read)
+         ("C-x <menu> d d" . desktop-remove)
+         ("C-x <menu> d c" . desktop-clear)
+         ("C-x <menu> d v" . desktop-revert))
 
 ;; Activate fancy minibuffer completion
 (use-package icomplete
