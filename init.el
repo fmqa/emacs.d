@@ -36,6 +36,10 @@
          ("C-x <menu> d d" . desktop-remove)
          ("C-x <menu> d c" . desktop-clear)
          ("C-x <menu> d v" . desktop-revert))
+  :custom
+  (desktop-save-mode t)
+  (desktop-load-locked-desktop nil)
+  (desktop-save nil))
 
 ;; Activate fancy minibuffer completion
 (use-package icomplete
