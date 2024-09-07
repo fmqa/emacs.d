@@ -160,7 +160,9 @@
   (erc-modules
    '(autoaway autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom services stamp track))
   (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
-  (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
+  (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
+  :config
+  (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE))
 
 (use-package gnus-sum
   :defer t
