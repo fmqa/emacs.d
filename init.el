@@ -154,15 +154,17 @@
 (use-package erc
   :if (package-installed-p 'erc '(5 6))
   :defer t
+  :config
+  (setopt erc-modules
+          (seq-union '(autoaway bufbar keep-place nicks notifications scrolltobottom services)
+                     erc-modules))
+  (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE)
   :custom
   (erc-fill-function 'erc-fill-wrap)
   (erc-interpret-mirc-color t)
-  (erc-modules
-   '(autoaway autojoin bufbar button completion fill imenu irccontrols keep-place list match menu move-to-prompt netsplit networks nicks notifications readonly ring scrolltobottom services stamp track))
   (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
   (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
-  :config
-  (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE))
+  :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
 (use-package gnus-sum
   :defer t
