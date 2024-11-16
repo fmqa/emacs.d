@@ -1,20 +1,39 @@
-;; Ensure `markdown-mode' is installed for prettier eglot docs
-(use-package markdown-mode
-  :defer t
-  :ensure t)
+;; More basic editing conveniences
+(use-package emacs
+  :config
+  (put 'narrow-to-region 'disabled nil)
+  :custom
+  (menu-bar-mode nil)
+  (tool-bar-mode nil)
+  (ring-bell-function 'ignore)
+  (enable-recursive-minibuffers t)
+  (inhibit-startup-screen t)
+  (initial-scratch-message nil)
+  (initial-major-mode 'org-mode)
+  (tab-width 4))
 
 ;; Basic editing conveniences
 (use-package simple
+  ;; DWIMify case transform commands
+  :bind (("M-u" . upcase-dwim)
+         ("M-l" . downcase-dwim)
+         ("M-c" . capitalize-dwim))
   :custom
   (undo-no-redo t)
   (column-number-mode t)
-  (completion-auto-select 'second-tab))
+  (completion-auto-select 'second-tab)
+  (mail-user-agent 'gnus-user-agent))
 
-;; More basic editing conveniences
-(use-package emacs
+;; Smooth scrolling
+(use-package pixel-scroll
   :custom
-  (ring-bell-function 'ignore)
-  (enable-recursive-minibuffers t))
+  (pixel-scroll-precision-mode t))
+
+;; IBuffer
+(use-package ibuffer
+  :defer t
+  :custom
+  (ibuffer-save-with-custom nil))
 
 ;; Show minibuffer depth
 (use-package mb-depth
@@ -40,6 +59,22 @@
   (tab-bar-tab-inactive ((t (:inherit tab-bar-tab :overline unspecified :background unspecified))))
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
+
+;; Highlight whitespace characters
+(use-package whitespace
+  :defer t
+  :custom
+  (whitespace-display-mappings
+   '((tab-mark ?\t [10095 ?\t] [62 ?\t])
+     (space-mark 32 [183] [46])
+     (space-mark 160 [8942] [95])
+     (newline-mark ?\n [172 ?\n] [36 ?\n])
+     (newline-mark ?\r [182] [35])))
+  (whitespace-style
+   '(tab-mark
+     face trailing tabs newline missing-newline-at-eof
+     space-after-tab space-before-tab))
+  :hook (prog-mode conf-mode text-mode))
 
 ;; Make session management less annoying
 (use-package desktop
@@ -79,13 +114,6 @@
 (use-package menu-bar
   :defer t
   :bind ("C-<menu>" . menu-bar-open))
-
-;; DWIMify case transform commands
-(use-package simple
-  :defer t
-  :bind (("M-u" . upcase-dwim)
-         ("M-l" . downcase-dwim)
-         ("M-c" . capitalize-dwim)))
 
 ;; Bind duplicate-dwim as recommended by mickeyp
 (use-package misc
@@ -130,6 +158,7 @@
 (use-package windmove
   :custom (windmove-default-keybindings '([24 119])))
 
+;; Window management
 (use-package winner
   :defer t
   :bind (("C-x w C-/" . winner-undo)
@@ -144,6 +173,8 @@
 ;; Prettify checkboxes in org-mode
 (use-package prog-mode
   :defer t
+  :custom
+  (prettify-symbols-unprettify-at-point 'right-edge)
   :hook ((prog-mode . prettify-symbols-mode)
          (org-mode . (lambda () (setq prettify-symbols-alist
                                  (append '(("[ ]" . "☐")
@@ -152,6 +183,13 @@
                                          prettify-symbols-alist))
                        (prettify-symbols-mode 1)))))
 
+;; Org keybindings
+(use-package org-keys
+  :defer t
+  :custom
+  (org-replace-disputed-keys t))
+
+;; IRC client
 (use-package erc
   :if (package-installed-p 'erc '(5 6))
   :defer t
@@ -167,6 +205,13 @@
   (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
   :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
+;; Message composition
+(use-package message
+  :defer t
+  :custom
+  (message-mail-user-agent t))
+
+;; Gnus summary
 (use-package gnus-sum
   :defer t
   :custom
@@ -183,6 +228,7 @@
   (gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
   (gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))))
 
+;; Gnus articles
 (use-package gnus-art
   :defer t
   :custom
@@ -191,16 +237,19 @@
   (gnus-mime-display-multipart-related-as-mixed t)
   (gnus-treat-strip-trailing-blank-lines 'last))
 
+;; Gnus start screen
 (use-package gnus-start
   :defer t
   :custom
   (gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[”]”[#’()]"))
 
+;; Gnus newsgroups
 (use-package gnus-group
   :defer t
   :custom
   (gnus-group-line-format "%M%S%p%P%5y:%B %G\12"))
 
+;; Gnus news/mailreader
 (use-package gnus
   :defer t
   :custom
@@ -236,6 +285,29 @@
 ;; Security stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Ensure `markdown-mode' is installed for prettier eglot docs
+(use-package markdown-mode
+  :defer t
+  :ensure t)
+
+;; Rainbow delimiters
+(use-package rainbow-delimiters
+  :defer t
+  :ensure t
+  :hook (prog-mode conf-mode))
+
+;; Which key
+(use-package which-key
+  :defer t
+  :ensure t
+  :custom
+  (which-key-mode t))
+
+;; END THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Load additional user-specific configuration
 (require 'xdg)
 (let ((emacs-user-init (file-name-concat (xdg-config-home) "emacs.user.d" "init.el")))
@@ -247,33 +319,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(leuven-dark))
- '(global-whitespace-mode t)
- '(ibuffer-save-with-custom nil)
- '(inhibit-startup-screen t)
- '(initial-major-mode 'org-mode)
- '(initial-scratch-message nil)
- '(mail-user-agent 'gnus-user-agent)
- '(menu-bar-mode nil)
- '(message-mail-user-agent t)
- '(org-replace-disputed-keys t)
- '(pixel-scroll-precision-mode t)
- '(prettify-symbols-unprettify-at-point 'right-edge)
- '(tab-width 4)
- '(tool-bar-mode nil)
- '(whitespace-display-mappings
-   '((space-mark 32
-				 [183]
-				 [46])
-	 (space-mark 160
-				 [164]
-				 [95])
-	 (newline-mark 10
-				   [36 10])
-	 (tab-mark 9
-			   [10095 9]
-			   [92 9])))
- '(whitespace-global-modes '(not erc-mode))
- '(whitespace-style
-   '(face trailing tabs newline missing-newline-at-eof empty space-after-tab space-before-tab tab-mark)))
-(put 'narrow-to-region 'disabled nil)
+ '(custom-enabled-themes '(leuven-dark)))
