@@ -36,6 +36,7 @@
   (tab-bar ((t (:inherit variable-pitch :background nil :foreground nil))))
   (tab-bar-tab ((t (:inherit tab-bar :overline "#ff74ff" :box nil))))
   (tab-bar-tab-group-current ((t (:inherit tab-bar-tab :background "gray20" :weight bold))))
+  (tab-bar-tab-group-inactive ((t (:inherit tab-bar-tab-group-current :overline nil))))
   (tab-bar-tab-inactive ((t (:inherit tab-bar-tab :overline nil :background nil))))
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
