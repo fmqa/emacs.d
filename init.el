@@ -49,18 +49,9 @@
   :custom
   (isearch-lazy-count t))
 
-;; Helper function for creating buffer name getters
-(defun starify-if-buffer-modified (f star)
-  (lambda ()
-    (concat (funcall f)
-            (when (and (buffer-file-name) (buffer-modified-p)) star))))
-
 ;; Better-looking tab groups
 (use-package tab-bar
   :defer t
-  :config
-  ;; Visually mark tabs that are visiting modified buffers
-  (setopt tab-bar-tab-name-function (starify-if-buffer-modified tab-bar-tab-name-function "⁺"))
   :custom-face
   (tab-bar ((t (:inherit variable-pitch :background unspecified :foreground unspecified))))
   (tab-bar-tab ((t (:inherit tab-bar :overline "#ff74ff" :box unspecified))))
