@@ -26,6 +26,11 @@
   (completion-auto-select 'second-tab)
   (mail-user-agent 'gnus-user-agent))
 
+;; Delete selection on edit
+(use-package delsel
+  :custom
+  (delete-selection-mode t))
+
 ;; Smooth scrolling
 (use-package pixel-scroll
   :custom
