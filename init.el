@@ -211,6 +211,12 @@
   (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
   :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
+;; Sane ediff
+(use-package ediff-wind
+  :defer t
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain))
+
 ;; Message composition
 (use-package message
   :defer t
