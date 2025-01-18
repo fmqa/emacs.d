@@ -318,6 +318,9 @@
   :custom
   (which-key-mode t))
 
+;; Visually-appealing dark theming by https://protesilaos.com/emacs/modus-themes
+(use-package modus-themes :ensure t)
+
 ;; END THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Load additional user-specific configuration
@@ -331,4 +334,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(leuven-dark)))
+ '(custom-enabled-themes '(modus-vivendi-tinted)))
