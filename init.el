@@ -54,18 +54,6 @@
   :custom
   (isearch-lazy-count t))
 
-;; Better-looking tab groups
-(use-package tab-bar
-  :defer t
-  :custom-face
-  (tab-bar ((t (:inherit variable-pitch :background unspecified :foreground unspecified))))
-  (tab-bar-tab ((t (:inherit tab-bar :overline "#ff74ff" :box unspecified))))
-  (tab-bar-tab-group-current ((t (:inherit tab-bar-tab :background "gray20" :weight bold))))
-  (tab-bar-tab-group-inactive ((t (:inherit tab-bar-tab-group-current :overline unspecified))))
-  (tab-bar-tab-inactive ((t (:inherit tab-bar-tab :overline unspecified :background unspecified))))
-  :custom
-  (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
-
 ;; Highlight whitespace characters
 (use-package whitespace
   :defer t
