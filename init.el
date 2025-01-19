@@ -14,6 +14,14 @@
   (initial-major-mode 'org-mode)
   (tab-width 4))
 
+(use-package package
+  :defer t
+  :config
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  :custom
+  (package-archive-priorities '(("gnu" . 10)
+                                ("nongnu" . 10))))
+
 ;; Basic editing conveniences
 (use-package simple
   ;; DWIMify case transform commands
@@ -312,8 +320,11 @@
   :custom
   (which-key-mode t))
 
-;; Visually-appealing dark theming by https://protesilaos.com/emacs/modus-themes
-(use-package modus-themes :ensure t)
+;; Visually-appealing dark theming
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-nord t))
 
 ;; END THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -322,10 +333,3 @@
 (let ((emacs-user-init (file-name-concat (xdg-config-home) "emacs.user.d" "init.el")))
   (when (file-exists-p emacs-user-init)
     (load emacs-user-init)))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(modus-vivendi-tinted)))
