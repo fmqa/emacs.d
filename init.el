@@ -54,6 +54,12 @@
   :custom
   (isearch-lazy-count t))
 
+;; Better-looking tab groups
+(use-package tab-bar
+  :defer t
+  :custom
+  (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
+
 ;; Highlight whitespace characters
 (use-package whitespace
   :defer t
