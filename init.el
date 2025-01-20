@@ -324,7 +324,8 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-nord t))
+  (load-theme 'doom-nord t)
+  (doom-themes-org-config))
 
 ;; END THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
