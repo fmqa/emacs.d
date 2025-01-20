@@ -325,6 +325,7 @@
   :ensure t
   :config
   (load-theme 'doom-nord t)
+  (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
 ;; END THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
