@@ -178,6 +178,13 @@
   (winner-mode t)
   (winner-dont-bind-my-keys t))
 
+;; Diff display
+(use-package diff-mode
+  :defer t
+  :custom
+  ;; Fix non-deterministic order of font-lock overlays
+  (diff-font-lock-syntax nil))
+
 ;; Prettify checkboxes in org-mode
 (use-package prog-mode
   :defer t
