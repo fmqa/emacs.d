@@ -230,6 +230,16 @@
   (erc-fill-function 'erc-fill-wrap)
   (erc-interactive-display 'buffer))
 
+;; IRC client activity tracking
+(use-package erc-track
+  :if (package-installed-p 'erc '(5 6))
+  :defer t
+  ;; Prevent JOINs and PARTs from lighting up the mode-line.
+  :config
+  (setopt erc-track-faces-priority-list
+          (remq 'erc-notice-face erc-track-faces-priority-list))
+  :custom (erc-track-priority-faces-only 'all))
+
 ;; IRC client formatting
 (use-package erc-goodies
   :if (package-installed-p 'erc '(5 6))
