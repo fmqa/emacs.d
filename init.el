@@ -210,14 +210,46 @@
   :defer t
   :config
   (setopt erc-modules
-          (seq-union '(autoaway bufbar keep-place nicks notifications scrolltobottom services)
+          (seq-union '(autoaway bufbar nicks notifications scrolltobottom services)
                      erc-modules))
-  (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE)
+  :custom
+  (erc-server-reconnect-function 'erc-server-delayed-check-reconnect))
+
+;; IRC client button commands
+(use-package erc-button
+  :if (package-installed-p 'erc '(5 6))
+  :defer t
+  :config
+  (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE))
+
+;; IRC client line wrap
+(use-package erc-fill
+  :if (package-installed-p 'erc '(5 6))
+  :defer t
   :custom
   (erc-fill-function 'erc-fill-wrap)
-  (erc-interpret-mirc-color t)
-  (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
-  (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window)))
+  (erc-interactive-display 'buffer))
+
+;; IRC client formatting
+(use-package erc-goodies
+  :if (package-installed-p 'erc '(5 6))
+  :defer t
+  :hook (erc-mode . erc-keep-place-indicator-enable)
+  :custom
+  (erc-scrolltobottom-all t)
+  (erc-interpret-mirc-color t))
+
+;; IRC client sidebar
+(use-package erc-status-sidebar
+  :if (package-installed-p 'erc '(5 6))
+  :defer t
+  :custom
+  (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
+
+;; Formatting extension: https://github.com/fmqa/erc-irc-format
+(use-package erc-irc-format
+  :defer t
+  :if (package-installed-p 'erc '(5 6))
   :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
 ;; Sane ediff
