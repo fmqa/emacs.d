@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t;-*-
+;; -*- lexical-binding: t; indent-tabs-mode: nil -*-
 
 ;; More basic editing conveniences
 (use-package emacs
