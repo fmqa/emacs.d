@@ -15,9 +15,9 @@
   (tab-width 4))
 
 (use-package package
-  :defer t
   :config
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel/") t)
   :custom
   (package-archive-priorities '(("gnu" . 10)
                                 ("nongnu" . 10))))
@@ -206,8 +206,9 @@
 
 ;; IRC client
 (use-package erc
-  :if (package-installed-p 'erc '(5 6))
   :defer t
+  :ensure t
+  :pin gnu-devel
   :config
   (setopt erc-modules
           (seq-union '(autoaway bufbar nicks notifications scrolltobottom services)
