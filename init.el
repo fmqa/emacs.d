@@ -214,7 +214,8 @@
           (seq-union '(autoaway bufbar nicks notifications scrolltobottom services)
                      erc-modules))
   :custom
-  (erc-server-reconnect-function 'erc-server-delayed-check-reconnect))
+  (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
+  (erc-prompt "\u27a4"))
 
 ;; IRC client button commands
 (use-package erc-button
@@ -385,3 +386,4 @@
 (let ((emacs-user-init (file-name-concat (xdg-config-home) "emacs.user.d" "init.el")))
   (when (file-exists-p emacs-user-init)
     (load emacs-user-init)))
+
