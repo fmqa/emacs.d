@@ -103,6 +103,11 @@
   :custom
   (fido-vertical-mode t))
 
+;; Completion previews
+(use-package completion-preview
+  :defer t
+  :hook (prog-mode conf-mode))
+
 ;; Better dired defaults
 (use-package dired
   :defer t
@@ -367,7 +372,6 @@
 ;; Which key
 (use-package which-key
   :defer t
-  :ensure t
   :custom
   (which-key-mode t))
 
@@ -386,4 +390,3 @@
 (let ((emacs-user-init (file-name-concat (xdg-config-home) "emacs.user.d" "init.el")))
   (when (file-exists-p emacs-user-init)
     (load emacs-user-init)))
-
