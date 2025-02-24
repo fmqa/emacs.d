@@ -4,7 +4,7 @@
 
 _Vanilla, discoverable Emacs configuration_
 
-This is my Emacs configuration. It's simple, declarative, and discoverable. It requires **Emacs 29+**.
+This is my Emacs configuration. It's simple, declarative, and discoverable. It requires **Emacs 30+**.
 
 # Principles
 
@@ -17,7 +17,7 @@ This is my Emacs configuration. It's simple, declarative, and discoverable. It r
 
 # Requirements
 
-* Emacs 29+
+* Emacs 30+
 * A keyboard with a menu key (≣) (also sometimes called "application key"). C-≣ is used as a prefix key since it is usually not bound to anything. On a Mac keyboard, this config should be edited and the key reassigned to another key e.g. Command (⌘).
 
 # Features
