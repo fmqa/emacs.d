@@ -41,6 +41,7 @@
 
 ;; Smooth scrolling
 (use-package pixel-scroll
+  :disabled ;; Display issues on 30.1
   :custom
   (pixel-scroll-precision-mode t))
 
