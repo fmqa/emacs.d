@@ -66,6 +66,10 @@
 ;; Better-looking tab groups
 (use-package tab-bar
   :defer t
+  ;; tab-bar-history-mode should be preferred to winner-mode when tab-bar-mode
+  ;; is enabled
+  :hook ((tab-bar-mode . (lambda () (tab-bar-history-mode (if tab-bar-mode +1 -1))))
+         (tab-bar-history-mode . (lambda () (winner-mode (if tab-bar-history-mode -1 +1)))))
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
 
@@ -175,14 +179,8 @@
 ;; Window management
 (use-package winner
   :defer t
-  :bind (("C-x w C-/" . winner-undo)
-         ("C-x w C-_" . winner-undo)
-         ("C-x w <undo>" . winner-undo)
-         ("C-x w C-?" . winner-redo)
-         ("C-x w C-M-_" . winner-redo))
   :custom
-  (winner-mode t)
-  (winner-dont-bind-my-keys t))
+  (winner-mode t))
 
 ;; Diff display
 (use-package diff-mode
