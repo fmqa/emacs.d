@@ -225,14 +225,12 @@
 
 ;; IRC client button commands
 (use-package erc-button
-  :if (package-installed-p 'erc '(5 6))
   :defer t
   :config
   (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE))
 
 ;; IRC client line wrap
 (use-package erc-fill
-  :if (package-installed-p 'erc '(5 6))
   :defer t
   :custom
   (erc-fill-function 'erc-fill-wrap)
@@ -240,7 +238,6 @@
 
 ;; IRC client activity tracking
 (use-package erc-track
-  :if (package-installed-p 'erc '(5 6))
   :defer t
   ;; Prevent JOINs and PARTs from lighting up the mode-line.
   :config
@@ -250,7 +247,6 @@
 
 ;; IRC client formatting
 (use-package erc-goodies
-  :if (package-installed-p 'erc '(5 6))
   :defer t
   :hook (erc-mode . erc-keep-place-indicator-enable)
   :custom
@@ -259,7 +255,6 @@
 
 ;; IRC client sidebar
 (use-package erc-status-sidebar
-  :if (package-installed-p 'erc '(5 6))
   :defer t
   :custom
   (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
@@ -267,7 +262,6 @@
 ;; Formatting extension: https://github.com/fmqa/erc-irc-format
 (use-package erc-irc-format
   :defer t
-  :if (package-installed-p 'erc '(5 6))
   :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
 ;; Sane ediff
