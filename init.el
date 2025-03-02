@@ -218,6 +218,8 @@
           (seq-union '(autoaway bufbar nicks notifications scrolltobottom services)
                      erc-modules))
   :custom
+  (erc-interactive-display 'buffer)
+  (erc-receive-query-display 'bury)
   (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
   (erc-prompt "\u27a4"))
 
@@ -231,8 +233,7 @@
 (use-package erc-fill
   :defer t
   :custom
-  (erc-fill-function 'erc-fill-wrap)
-  (erc-interactive-display 'buffer))
+  (erc-fill-function 'erc-fill-wrap))
 
 ;; IRC client activity tracking
 (use-package erc-track
