@@ -11,7 +11,7 @@
   (enable-recursive-minibuffers t)
   (inhibit-startup-screen t)
   (initial-scratch-message nil)
-  (initial-major-mode 'org-mode)
+  (initial-major-mode 'text-mode)
   (tab-width 4))
 
 (use-package package
