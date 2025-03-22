@@ -215,7 +215,7 @@
   :pin gnu-devel
   :config
   (setopt erc-modules
-          (seq-union '(autoaway bufbar nicks notifications scrolltobottom services)
+          (seq-union '(bufbar nicks notifications scrolltobottom services)
                      erc-modules))
   :custom
   (erc-interactive-display 'buffer)
