@@ -65,11 +65,18 @@
 
 ;; Better-looking tab groups
 (use-package tab-bar
+  :preface
+  (defun dwim-toggle-tab-bar-history-mode ()
+    "Enable tab-bar-history-mode if needed, otherwise disable it."
+    (tab-bar-history-mode (if tab-bar-mode +1 -1)))
+  (defun dwim-toggle-winner-mode ()
+    "Enable winner-mode if needed, otherwise disable it."
+    (winner-mode (if tab-bar-history-mode -1 +1)))
   :defer t
   ;; tab-bar-history-mode should be preferred to winner-mode when tab-bar-mode
   ;; is enabled
-  :hook ((tab-bar-mode . (lambda () (tab-bar-history-mode (if tab-bar-mode +1 -1))))
-         (tab-bar-history-mode . (lambda () (winner-mode (if tab-bar-history-mode -1 +1)))))
+  :hook ((tab-bar-mode . dwim-toggle-tab-bar-history-mode)
+         (tab-bar-history-mode . dwim-toggle-winner-mode))
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
 
@@ -191,16 +198,18 @@
 
 ;; Prettify checkboxes in org-mode
 (use-package prog-mode
+  :preface
+  (defun prettify-org-symbols ()
+    "Prettify checkboxes in org-mode."
+    (setf (alist-get "[ ]" prettify-symbols-alist nil nil 'equal) "☐")
+    (setf (alist-get "[X]" prettify-symbols-alist nil nil 'equal) "☑")
+    (setf (alist-get "[-]" prettify-symbols-alist nil nil 'equal) "⊟")
+    (prettify-symbols-mode 1))
   :defer t
   :custom
   (prettify-symbols-unprettify-at-point 'right-edge)
   :hook ((prog-mode . prettify-symbols-mode)
-         (org-mode . (lambda () (setq prettify-symbols-alist
-                                 (append '(("[ ]" . "☐")
-                                           ("[X]" . "☑")
-                                           ("[-]" . "⊟"))
-                                         prettify-symbols-alist))
-                       (prettify-symbols-mode 1)))))
+         (org-mode . prettify-org-symbols)))
 
 ;; Org keybindings
 (use-package org-keys
