@@ -34,6 +34,13 @@
   (completion-auto-select 'second-tab)
   (mail-user-agent 'gnus-user-agent))
 
+;; Repeat mode
+(use-package repeat
+  :defer t
+  :custom
+  (repeat-mode t)
+  (repeat-exit-key "<return>"))
+
 ;; Delete selection on edit
 (use-package delsel
   :custom
@@ -177,11 +184,16 @@
 ;; Accessible keybind for hippie-expand
 (use-package hippie-expand
   :defer t
-  :bind ("C-x C-/" . hippie-expand))
+  :bind ("C-x C-/" . hippie-expand)
+  (:repeat-map hippie-expand-repeat-map
+               ("C-/" . hippie-expand)))
 
 ;; Set windowmove prefix to C-x w
 (use-package windmove
-  :custom (windmove-default-keybindings '([24 119])))
+  :custom
+  (windmove-default-keybindings '([24 119]))
+  (windmove-swap-states-default-keybindings '([24 119] shift))
+  (windmove-display-default-keybindings '([24 119] meta)))
 
 ;; Window management
 (use-package winner
