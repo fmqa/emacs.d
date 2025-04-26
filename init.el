@@ -190,6 +190,13 @@
 
 ;; Set windowmove prefix to C-x w
 (use-package windmove
+  :config
+  (defvar-keymap windmove-repeat-map
+    :repeat t
+    "<up>"    #'windmove-up
+    "<down>"  #'windmove-down
+    "<left>"  #'windmove-left
+    "<right>" #'windmove-right)
   :custom
   (windmove-default-keybindings '([24 119]))
   (windmove-swap-states-default-keybindings '([24 119] shift))
