@@ -7,6 +7,7 @@
   :custom
   (menu-bar-mode nil)
   (tool-bar-mode nil)
+  (use-short-answers t)
   (ring-bell-function 'ignore)
   (enable-recursive-minibuffers t)
   (inhibit-startup-screen t)
