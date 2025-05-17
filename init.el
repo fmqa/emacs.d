@@ -252,6 +252,13 @@
   (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
   (erc-prompt "\u27a4"))
 
+;; Better fool handling
+(use-package erc-match
+  :defer t
+  :hook ((erc-text-matched . erc-hide-fools))
+  :custom
+  (erc-fool-highlight-type 'all))
+
 ;; IRC client button commands
 (use-package erc-button
   :defer t
