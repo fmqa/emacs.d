@@ -189,6 +189,15 @@
   (:repeat-map hippie-expand-repeat-map
                ("C-/" . hippie-expand)))
 
+;; Windowing rules
+(use-package window
+  :preface
+  (defun shell-command-buffer-name-p (name)
+    (or (equal name shell-command-buffer-name)
+        (equal name shell-command-buffer-name-async)))
+  :config
+  (add-to-list 'display-buffer-alist '(shell-command-buffer-name-p display-buffer-no-window)))
+
 ;; Set windowmove prefix to C-x w
 (use-package windmove
   :config
