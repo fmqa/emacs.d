@@ -196,7 +196,7 @@
     (or (equal name shell-command-buffer-name)
         (equal name shell-command-buffer-name-async)))
   :config
-  (add-to-list 'display-buffer-alist '(shell-command-buffer-name-condition display-buffer-no-window)))
+  (add-to-list 'display-buffer-alist '(shell-command-buffer-name-condition display-buffer-no-window (allow-no-window . t))))
 
 ;; Set windowmove prefix to C-x w
 (use-package windmove
