@@ -196,7 +196,8 @@
     (or (equal name shell-command-buffer-name)
         (equal name shell-command-buffer-name-async)))
   :config
-  (add-to-list 'display-buffer-alist '(shell-command-buffer-name-condition display-buffer-no-window (allow-no-window . t))))
+  ;; Reuse existing shell output windows, even those on other frames
+  (add-to-list 'display-buffer-alist '(shell-command-buffer-name-condition display-buffer-reuse-window (reusable-frames . t))))
 
 ;; Set windowmove prefix to C-x w
 (use-package windmove
