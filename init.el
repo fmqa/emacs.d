@@ -307,7 +307,7 @@
 ;; Formatting extension: https://github.com/fmqa/erc-irc-format
 (use-package erc-irc-format
   :defer t
-  :vc (:url "https://github.com/fmqa/erc-irc-format.git")
+  :vc (:url "https://github.com/fmqa/erc-irc-format.git" :branch "main")
   :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
 ;; Sane ediff
