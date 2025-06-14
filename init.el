@@ -15,6 +15,12 @@
   (initial-major-mode 'text-mode)
   (tab-width 4))
 
+;; Use separate file for customization variables
+(use-package cus-edit
+  :config
+  (setopt custom-file (file-name-concat user-emacs-directory "custom.el"))
+  (load custom-file))
+
 (use-package package
   :config
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -426,8 +432,5 @@
 
 ;; END THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Load additional user-specific configuration
-(require 'xdg)
-(let ((emacs-user-init (file-name-concat (xdg-config-home) "emacs.user.d" "init.el")))
-  (when (file-exists-p emacs-user-init)
-    (load emacs-user-init)))
+;; Load (optional) additional user-specific configuration
+(load (file-name-concat user-emacs-directory "user.el") t)
