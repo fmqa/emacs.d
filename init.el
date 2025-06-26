@@ -260,7 +260,7 @@
   :pin gnu-devel
   :config
   (setopt erc-modules
-          (seq-union '(bufbar nicks notifications scrolltobottom services)
+          (seq-union '(bufbar nicks notifications scrolltobottom services irc-format-normalize)
                      erc-modules))
   :custom
   (erc-interactive-display 'buffer)
@@ -350,9 +350,13 @@
   :defer t
   :custom
   (gnus-article-browse-delete-temp t)
-  (gnus-inhibit-images t)
   (gnus-mime-display-multipart-related-as-mixed t)
-  (gnus-treat-strip-trailing-blank-lines 'last))
+  (gnus-treat-strip-trailing-blank-lines 'last)
+  ;; From https://xristos.sdf.org/fix-gnus-mime.el.txt
+  (gnus-inhibit-images t)
+  (gnus-buttonized-mime-types
+   '("multipart/alternative" "multipart/encrypted" "multipart/signed" ".*/signed"
+     "text/x-org" "text/richtext" "text/enriched")))
 
 ;; Gnus start screen
 (use-package gnus-start
@@ -377,25 +381,27 @@
 
 ;; BEGIN https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setopt mm-html-inhibit-images t)
-(setopt mm-enable-external 'ask)
-(setopt mm-discouraged-alternatives '("text/html" "text/richtext" "text/enriched" "image/.*"))
-(setopt mailcap-download-directory "/tmp")
+(use-package mm-decode
+  :defer t
+  :custom
+  (mm-html-inhibit-images t)
+  (mm-enable-external 'ask)
+  (mm-discouraged-alternatives '("text/html" "text/richtext" "text/enriched" "image/.*"))
+  (mm-automatic-display '("text/plain"))
+  (mm-inlined-types '("text/plain" "text/html"))
+  (mm-inline-media-tests
+   `(("text/plain" mm-inline-text identity)
+     ("text/html"
+      mm-inline-text-html
+      ,(lambda (_handle)
+         mm-text-html-renderer))
+     (".*" ignore identity))))
 
-(setopt mm-automatic-display '("text/plain"))
-(setopt mm-inlined-types '("text/plain" "text/html"))
-(setopt mm-inline-tests
-        `(("text/plain" mm-inline-text identity)
-          ("text/html"
-           mm-inline-text-html
-           ,(lambda (_handle)
-              mm-text-html-renderer))
-          (".*" ignore identity)))
-(setopt mailcap-user-mime-data '(("xdg-open %s" ".*")))
-
-(setopt gnus-buttonized-mime-types
-        '("multipart/alternative" "multipart/encrypted" "multipart/signed" ".*/signed"
-          "text/x-org" "text/richtext" "text/enriched"))
+(use-package mailcap
+  :defer t
+  :custom
+  (mailcap-download-directory "/tmp")
+  (mailcap-user-mime-data '(("xdg-open %s" ".*"))))
 
 ;; END https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
