@@ -62,8 +62,15 @@
 ;; IBuffer
 (use-package ibuffer
   :defer t
+  :bind ("C-x C-b" . ibuffer)
   :custom
   (ibuffer-save-with-custom nil))
+
+;; Project
+(use-package project
+  :defer t
+  :custom
+  (project-buffers-viewer 'project-list-buffers-ibuffer))
 
 ;; Show minibuffer depth
 (use-package mb-depth
