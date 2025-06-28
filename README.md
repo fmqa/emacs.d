@@ -18,7 +18,6 @@ This is my Emacs configuration. It's simple, declarative, and discoverable. It r
 # Requirements
 
 * Emacs 30+
-* A keyboard with a menu key (≣) (also sometimes called "application key"). C-≣ is used as a prefix key since it is usually not bound to anything. On a Mac keyboard, this config should be edited and the key reassigned to another key e.g. Command (⌘).
 
 # Features
 
@@ -30,17 +29,4 @@ This is my Emacs configuration. It's simple, declarative, and discoverable. It r
 
 # Custom keybinds
 
-The following key bindings are registered by this configuration. These can be also shown inside Emacs using `M-x describe-personal-keybindings`:
-
-* `C-x ≣` or `C-x <menu>` is used a prefix key for recentf
-  * `C-x <menu> o` Open recentf menu (`recentf-open-files`)
-  * `C-x <menu> e` Edit recentf list (`recentf-edit-list`)
-  * `C-x <menu> c` Cleanup recentf list (`recentf-cleanup`)
-* `C-x j` duplicates a line via `duplicate-dwim`
-* `C-x C-/` completes via `hippie-expand`
-* `C-x w` is set to the windmove prefix
-  * `C-x w <up>` `C-x w <down>` `C-x w <left>` `C-x w <right>` moves to the next window in the specified direction
-* `C-x w` also contains additional `windmove.el` keybindings
-  * `C-x w C-/` `C-x w C-_` and `C-x w C-_` are bound to `winner-undo`
-  * `C-x w C-?` and `C-x w C-?` are bound to `winner-redo`
-
+Use `M-x describe-personal-keybindings` to show custom keybindings. All custom keybinds are registered via `use-package'.
