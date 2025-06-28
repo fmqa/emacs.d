@@ -120,11 +120,11 @@
 ;; Make session management less annoying
 (use-package desktop
   :defer t
-  :bind (("C-x <menu> d s" . desktop-save)
-         ("C-x <menu> d r" . desktop-read)
-         ("C-x <menu> d d" . desktop-remove)
-         ("C-x <menu> d c" . desktop-clear)
-         ("C-x <menu> d v" . desktop-revert))
+  :bind (("C-x <f10> d s" . desktop-save)
+         ("C-x <f10> d r" . desktop-read)
+         ("C-x <f10> d d" . desktop-remove)
+         ("C-x <f10> d c" . desktop-clear)
+         ("C-x <f10> d v" . desktop-revert))
   :custom
   (desktop-save-mode t)
   (desktop-load-locked-desktop nil)
@@ -156,22 +156,17 @@
   (auto-revert-avoid-polling t)
   (auto-revert-check-vc-info t))
 
-;; Bind Ctrl+Menu to open the global menu
-(use-package menu-bar
-  :defer t
-  :bind ("C-<menu>" . menu-bar-open))
-
 ;; Bind duplicate-dwim as recommended by mickeyp
 (use-package misc
   :defer t
   :bind ("C-x j" . duplicate-dwim))
 
-;; Easily access recentf functionality with menu keybinds
+;; Easily access recentf functionality
 (use-package recentf
   :defer t
-  :bind (("C-x <menu> o" . recentf-open-files)
-         ("C-x <menu> e" . recentf-edit-list)
-         ("C-x <menu> c" . recentf-cleanup))
+  :bind (("C-x <f10> o" . recentf-open-files)
+         ("C-x <f10> e" . recentf-edit-list)
+         ("C-x <f10> c" . recentf-cleanup))
   :custom
   (recentf-mode t))
 
