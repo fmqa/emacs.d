@@ -139,7 +139,7 @@
 ;; Completion previews
 (use-package completion-preview
   :defer t
-  :hook (prog-mode conf-mode))
+  :hook (prog-mode conf-mode inferior-emacs-lisp-mode eshell-mode shell-mode))
 
 ;; Better dired defaults
 (use-package dired
