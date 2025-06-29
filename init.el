@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; indent-tabs-mode: nil -*-
 
-;; More basic editing conveniences
 (use-package emacs
+  ;; Basic editing conveniences.
   :config
   (put 'narrow-to-region 'disabled nil)
   :custom
@@ -15,13 +15,14 @@
   (initial-major-mode 'text-mode)
   (tab-width 4))
 
-;; Use separate file for customization variables
 (use-package cus-edit
+  ;; Use separate file for customization variables.
   :config
   (setopt custom-file (file-name-concat user-emacs-directory "custom.el"))
   (load custom-file t))
 
 (use-package package
+  ;; Configure package sources (MELPA, Devel ELPA).
   :config
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel/") t)
@@ -29,9 +30,8 @@
   (package-archive-priorities '(("gnu" . 10)
                                 ("nongnu" . 10))))
 
-;; Basic editing conveniences
 (use-package simple
-  ;; DWIMify case transform commands
+  ;; More basic editing conveniences.
   :bind (("M-u" . upcase-dwim)
          ("M-l" . downcase-dwim)
          ("M-c" . capitalize-dwim))
@@ -41,51 +41,51 @@
   (completion-auto-select 'second-tab)
   (mail-user-agent 'gnus-user-agent))
 
-;; Repeat mode
 (use-package repeat
+  ;; Repeat mode.
   :defer t
   :custom
   (repeat-mode t)
   (repeat-exit-key "<return>"))
 
-;; Delete selection on edit
 (use-package delsel
+  ;; Delete selection on edit.
   :custom
   (delete-selection-mode t))
 
-;; Smooth scrolling
 (use-package pixel-scroll
-  :disabled ;; Display issues on 30.1
+  ;; Smooth scrolling.
+  :disabled ;; Due to display issues on 30.1
   :custom
   (pixel-scroll-precision-mode t))
 
-;; IBuffer
 (use-package ibuffer
+  ;; Prefer ibuffer for buffer management.
   :defer t
   :bind ("C-x C-b" . ibuffer)
   :custom
   (ibuffer-save-with-custom nil))
 
-;; Project
 (use-package project
+  ;; project.el stuff.
   :defer t
   :custom
   (project-buffers-viewer 'project-list-buffers-ibuffer))
 
-;; Show minibuffer depth
 (use-package mb-depth
+  ;; Show minibuffer depth.
   :defer t
   :custom
   (minibuffer-depth-indicate-mode t))
 
-;; Incremental search
 (use-package isearch
+  ;; Incremental search.
   :defer t
   :custom
   (isearch-lazy-count t))
 
-;; Better-looking tab groups
 (use-package tab-bar
+  ;; Better-looking tab groups + improved winner-mode integration.
   :preface
   (defun dwim-toggle-tab-bar-history-mode ()
     "Enable tab-bar-history-mode if needed, otherwise disable it."
@@ -101,8 +101,8 @@
   :custom
   (tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
 
-;; Highlight whitespace characters
 (use-package whitespace
+  ;; Highlight whitespace characters.
   :defer t
   :custom
   (whitespace-display-mappings
@@ -117,8 +117,8 @@
      space-after-tab space-before-tab))
   :hook (prog-mode conf-mode text-mode))
 
-;; Make session management less annoying
 (use-package desktop
+  ;; Explicit, non-intrusive session management.
   :defer t
   :bind (("C-x <f10> d s" . desktop-save)
          ("C-x <f10> d r" . desktop-read)
@@ -130,39 +130,45 @@
   (desktop-load-locked-desktop nil)
   (desktop-save nil))
 
-;; Activate fancy minibuffer completion
 (use-package icomplete
+  ;; Minibuffer completions.
   :defer t
   :custom
   (fido-vertical-mode t))
 
-;; Completion previews
+(use-package outline
+  ;; Outlines.
+  :defer t
+  :custom
+  (outline-minor-mode-use-buttons 'in-margins))
+
 (use-package completion-preview
+  ;; Completion previews (for suitable modes).
   :defer t
   :hook (prog-mode conf-mode inferior-emacs-lisp-mode eshell-mode shell-mode))
 
-;; Better dired defaults
 (use-package dired
+  ;; Better dired defaults.
   :defer t
   :custom
   (dired-kill-when-opening-new-dired-buffer t)
   (dired-dwim-target t))
 
-;; Automatically refresh modified file buffers
 (use-package autorevert
+  ;; Automatically refresh modified file buffers.
   :defer t
   :custom
   (global-auto-revert-mode t)
   (auto-revert-avoid-polling t)
   (auto-revert-check-vc-info t))
 
-;; Bind duplicate-dwim as recommended by mickeyp
 (use-package misc
+  ;; Bind duplicate-dwim (from mickeyp's "Mastering Emacs").
   :defer t
   :bind ("C-x j" . duplicate-dwim))
 
-;; Easily access recentf functionality
 (use-package recentf
+  ;; Accessible recentf.
   :defer t
   :bind (("C-x <f10> o" . recentf-open-files)
          ("C-x <f10> e" . recentf-edit-list)
@@ -170,13 +176,13 @@
   :custom
   (recentf-mode t))
 
-;; Line numbers
 (use-package display-line-numbers-mode
+  ;; Line numbers.
   :defer t
   :hook (text-mode prog-mode conf-mode))
 
-;; Hyperlink buttonization
 (use-package goto-addr
+  ;; Hyperlink buttonization.
   :defer t
   :hook ((compilation-mode . goto-address-mode)
          (prog-mode . goto-address-prog-mode)
@@ -185,20 +191,20 @@
          (eshell-mode . goto-address-mode)
          (shell-mode . goto-address-mode)))
 
-;; Electric pairs
 (use-package elec-pair
+  ;; Electric pairs
   :defer t
   :hook ((prog-mode conf-mode) . electric-pair-local-mode))
 
-;; Accessible keybind for hippie-expand
 (use-package hippie-expand
+  ;; Accessible hippie-expand.
   :defer t
   :bind ("C-x C-/" . hippie-expand)
   (:repeat-map hippie-expand-repeat-map
                ("C-/" . hippie-expand)))
 
-;; Windowing rules
 (use-package window
+  ;; Windowing rules.
   :preface
   (defun shell-command-buffer-name-condition (name action)
     (or (equal name shell-command-buffer-name)
@@ -207,8 +213,8 @@
   ;; Reuse existing shell output windows, even those on other frames
   (add-to-list 'display-buffer-alist '(shell-command-buffer-name-condition display-buffer-reuse-window (reusable-frames . t))))
 
-;; Set windowmove prefix to C-x w
 (use-package windmove
+  ;; Set windmove prefix to C-x w + add a repeat map.
   :config
   (defvar-keymap windmove-repeat-map
     :repeat t
@@ -221,21 +227,21 @@
   (windmove-swap-states-default-keybindings '([24 119] shift))
   (windmove-display-default-keybindings '([24 119] meta)))
 
-;; Window management
 (use-package winner
+  ;; Window management.
   :defer t
   :custom
   (winner-mode t))
 
-;; Diff display
 (use-package diff-mode
+  ;; Diff display.
   :defer t
   :custom
   ;; Fix non-deterministic order of font-lock overlays
   (diff-font-lock-syntax nil))
 
-;; Prettify checkboxes in org-mode
 (use-package prog-mode
+  ;; Prettify checkboxes in org-mode.
   :preface
   (defun prettify-org-symbols ()
     "Prettify checkboxes in org-mode."
@@ -249,17 +255,17 @@
   :hook ((prog-mode . prettify-symbols-mode)
          (org-mode . prettify-org-symbols)))
 
-;; Org keybindings
 (use-package org-keys
+  ;; Org keybindings.
   :defer t
   :custom
   (org-replace-disputed-keys t))
 
-;; IRC client
 (use-package erc
+  ;; IRC client.
   :defer t
   :ensure t
-  :pin gnu-devel
+  :pin gnu-devel ;; Use the Erc snapshot for latest features & fixes.
   :config
   (setopt erc-modules
           (seq-union '(bufbar nicks notifications scrolltobottom services irc-format-normalize)
@@ -270,68 +276,68 @@
   (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
   (erc-prompt "\u27a4"))
 
-;; Better fool handling
 (use-package erc-match
+  ;; Better fool hiding.
   :defer t
   :hook ((erc-text-matched . erc-hide-fools))
   :custom
   (erc-fool-highlight-type 'all))
 
-;; IRC client button commands
 (use-package erc-button
+  ;; IRC client button commands.
   :defer t
   :config
   (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE))
 
-;; IRC client line wrap
 (use-package erc-fill
+  ;; IRC client line wrap.
   :defer t
   :custom
   (erc-fill-function 'erc-fill-wrap))
 
-;; IRC client activity tracking
 (use-package erc-track
+  ;; IRC client activity tracking.
   :defer t
-  ;; Prevent JOINs and PARTs from lighting up the mode-line.
   :config
+  ;; Prevent JOINs and PARTs from lighting up the mode-line.
   (setopt erc-track-faces-priority-list
           (remq 'erc-notice-face erc-track-faces-priority-list))
   :custom (erc-track-priority-faces-only 'all))
 
-;; IRC client formatting
 (use-package erc-goodies
+  ;; IRC client formatting.
   :defer t
   :hook (erc-mode . erc-keep-place-indicator-enable)
   :custom
   (erc-scrolltobottom-all t)
   (erc-interpret-mirc-color t))
 
-;; IRC client sidebar
 (use-package erc-status-sidebar
+  ;; IRC client sidebar.
   :defer t
   :custom
   (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
 
-;; Formatting extension: https://github.com/fmqa/erc-irc-format
 (use-package erc-irc-format
+  ;; Enable https://github.com/fmqa/erc-irc-format for transient-based formatting UI.
   :defer t
   :vc (:url "https://github.com/fmqa/erc-irc-format.git" :branch "main")
   :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
-;; Sane ediff
 (use-package ediff-wind
+  ;; Saner ediff.
   :defer t
   :custom
   (ediff-window-setup-function 'ediff-setup-windows-plain))
 
-;; Message composition
 (use-package message
+  ;; Message composition.
   :defer t
   :custom
   (message-mail-user-agent t))
 
-;; Gnus summary
 (use-package gnus-sum
+  ;; Gnus summary.
   :defer t
   :custom
   (gnus-auto-select-first nil)
@@ -347,8 +353,8 @@
   (gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
   (gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))))
 
-;; Gnus articles
 (use-package gnus-art
+  ;; Gnus articles.
   :defer t
   :custom
   (gnus-article-browse-delete-temp t)
@@ -360,30 +366,26 @@
    '("multipart/alternative" "multipart/encrypted" "multipart/signed" ".*/signed"
      "text/x-org" "text/richtext" "text/enriched")))
 
-;; Gnus start screen
 (use-package gnus-start
+  ;; Gnus start screen.
   :defer t
   :custom
   (gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[”]”[#’()]"))
 
-;; Gnus newsgroups
 (use-package gnus-group
+  ;; Gnus newsgroups.
   :defer t
   :custom
   (gnus-group-line-format "%M%S%p%P%5y:%B %G\12"))
 
-;; Gnus news/mailreader
 (use-package gnus
+  ;; Gnus news/mailreader.
   :defer t
   :custom
   (gnus-keep-backlog 0))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Security stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; BEGIN https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package mm-decode
+  ;; Secure mm-decode, courtesy of https://xristos.sdf.org/fix-gnus-mime.el.txt
   :defer t
   :custom
   (mm-html-inhibit-images t)
@@ -400,45 +402,36 @@
      (".*" ignore identity))))
 
 (use-package mailcap
+  ;; Secure mailcap, courtesy of https://xristos.sdf.org/fix-gnus-mime.el.txt
   :defer t
   :custom
   (mailcap-download-directory "/tmp")
   (mailcap-user-mime-data '(("xdg-open %s" ".*"))))
 
-;; END https://xristos.sdf.org/fix-gnus-mime.el.txt ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Security stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Ensure `markdown-mode' is installed for prettier eglot docs
-(use-package markdown-mode
-  :defer t
-  :ensure t)
-
-;; Rainbow delimiters
-(use-package rainbow-delimiters
-  :defer t
-  :ensure t
-  :hook (prog-mode conf-mode))
-
-;; Which key
 (use-package which-key
+  ;; Discoverability: which-key key guides.
   :defer t
   :custom
   (which-key-mode t))
 
-;; Visually-appealing dark theming
-(use-package doom-themes
+(use-package markdown-mode ;; EXTERNAL
+  ;; Ensure `markdown-mode' is installed for prettier eglot docs.
+  :defer t
+  :ensure t)
+
+(use-package rainbow-delimiters ;; EXTERNAL
+  ;; Rainbow delimiters.
+  :defer t
+  :ensure t
+  :hook (prog-mode conf-mode))
+
+(use-package doom-themes ;; EXTERNAL
+  ;; Visually-appealing dark theming.
   :ensure t
   :config
   (load-theme 'doom-nord t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
-;; END THIRD PARTY PACKAGES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Load (optional) additional user-specific configuration
+;; Load (optional) additional user-specific configuration.
 (load (file-name-concat user-emacs-directory "user.el") t)
