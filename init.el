@@ -19,7 +19,7 @@
 (use-package cus-edit
   :config
   (setopt custom-file (file-name-concat user-emacs-directory "custom.el"))
-  (load custom-file))
+  (load custom-file t))
 
 (use-package package
   :config
