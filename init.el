@@ -41,6 +41,12 @@
   (completion-auto-select 'second-tab)
   (mail-user-agent 'gnus-user-agent))
 
+(use-package dnd
+  ;; Make Drag-and-Drop behave like in other programs.
+  :defer t
+  :custom
+  (dnd-indicate-insertion-point t))
+
 (use-package repeat
   ;; Repeat mode.
   :defer t
