@@ -320,6 +320,7 @@
   :defer t
   :hook (erc-mode . erc-keep-place-indicator-enable)
   :custom
+  (erc-input-line-position -1)
   (erc-scrolltobottom-all t)
   (erc-interpret-mirc-color t))
 
