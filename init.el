@@ -426,6 +426,11 @@
   :custom
   (which-key-mode t))
 
+(use-package marginalia ;; EXTERNAL
+  :defer t
+  :ensure t
+  :init (marginalia-mode))
+
 (use-package markdown-mode ;; EXTERNAL
   ;; Ensure `markdown-mode' is installed for prettier eglot docs.
   :defer t
