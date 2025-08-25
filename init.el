@@ -269,14 +269,9 @@
 
 (use-package erc
   ;; IRC client.
-  :preface
-  (defun erc-scroll-conservatively-in-buffer ()
-    "For the current buffer, always scroll just enough text to bring point into view."
-    (setq-local scroll-conservatively most-positive-fixnum))
   :defer t
   :ensure t
   :pin gnu-devel ;; Use the Erc snapshot for latest features & fixes.
-  :hook (erc-mode . erc-scroll-conservatively-in-buffer)
   :config
   (setopt erc-modules
           (seq-union '(bufbar nicks notifications scrolltobottom services irc-format-normalize)
@@ -304,7 +299,9 @@
   ;; IRC client line wrap.
   :defer t
   :custom
-  (erc-fill-function 'erc-fill-wrap))
+  (erc-fill-column 120)
+  (erc-fill-static-center 20)
+  (erc-fill-function 'erc-fill-static))
 
 (use-package erc-track
   ;; IRC client activity tracking.
@@ -320,7 +317,6 @@
   :defer t
   :hook (erc-mode . erc-keep-place-indicator-enable)
   :custom
-  (erc-input-line-position -1)
   (erc-scrolltobottom-all t)
   (erc-interpret-mirc-color t))
 
