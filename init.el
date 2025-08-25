@@ -299,12 +299,18 @@
   ;; IRC client line wrap.
   :preface
   ;; Fix unwanted scroll jumps when using `erc-fill-wrap'.
-  (unless (or (file-exists-p (concat (file-name-sans-extension (locate-library "erc-fill")) ".el.orig"))
-              (file-exists-p (concat (file-name-sans-extension (locate-library "erc-fill")) ".el.rej")))
-    (shell-command
-     (format "wget -qO- %s | patch -d %s -b -N -p3"
-             "https://gitlab.com/emacs-erc/edge/-/raw/master/resources/patches/0001-5.6.1-Prefer-window-text-pixel-size-in-erc-fill.patch?ref_type=heads"
-             (file-name-parent-directory (locate-library "erc-fill")))))
+  (let* ((patch-base-uri "https://gitlab.com/emacs-erc/edge/-/raw/master/resources/patches/")
+         (patch-uri (concat patch-base-uri "0001-5.6.1-Prefer-window-text-pixel-size-in-erc-fill.patch"))
+         (file-to-patch (concat (file-name-sans-extension (locate-library "erc-fill")) ".el")))
+    (when (and (file-exists-p file-to-patch) (file-writable-p file-to-patch))
+      (let ((default-directory (expand-file-name (file-name-parent-directory file-to-patch))))
+        (and (with-current-buffer (url-retrieve-synchronously patch-uri)
+               (call-process-region
+                (marker-position url-http-end-of-headers) (point-max)
+                "patch" nil "*Patch Output*"
+                "-p3"))
+             (chmod "erc-fill.el" #o444)
+             (byte-recompile-file "erc-fill.el")))))
   :defer t
   :custom
   (erc-fill-function 'erc-fill-wrap))
