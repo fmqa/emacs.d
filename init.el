@@ -297,11 +297,17 @@
 
 (use-package erc-fill
   ;; IRC client line wrap.
+  :preface
+  ;; Fix unwanted scroll jumps when using `erc-fill-wrap'.
+  (unless (or (file-exists-p (concat (file-name-sans-extension (locate-library "erc-fill")) ".el.orig"))
+              (file-exists-p (concat (file-name-sans-extension (locate-library "erc-fill")) ".el.rej")))
+    (shell-command
+     (format "wget -qO- %s | patch -d %s -b -N -p3"
+             "https://gitlab.com/emacs-erc/edge/-/raw/master/resources/patches/0001-5.6.1-Prefer-window-text-pixel-size-in-erc-fill.patch?ref_type=heads"
+             (file-name-parent-directory (locate-library "erc-fill")))))
   :defer t
   :custom
-  (erc-fill-column 120)
-  (erc-fill-static-center 20)
-  (erc-fill-function 'erc-fill-static))
+  (erc-fill-function 'erc-fill-wrap))
 
 (use-package erc-track
   ;; IRC client activity tracking.
@@ -317,6 +323,7 @@
   :defer t
   :hook (erc-mode . erc-keep-place-indicator-enable)
   :custom
+  (erc-input-line-position -1)
   (erc-scrolltobottom-all t)
   (erc-interpret-mirc-color t))
 
