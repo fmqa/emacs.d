@@ -269,9 +269,15 @@
 
 (use-package erc
   ;; IRC client.
+  :preface
+  (defun erc-scroll-conservatively-in-buffer ()
+    "For the current buffer, always scroll just enough text to bring point into view."
+    (setq-local scroll-conservatively most-positive-fixnum)
+    (setq-local scroll-step 0))
   :defer t
   :ensure t
   :pin gnu-devel ;; Use the Erc snapshot for latest features & fixes.
+  :hook (erc-mode . erc-scroll-conservatively-in-buffer)
   :config
   (setopt erc-modules
           (seq-union '(bufbar nicks notifications scrolltobottom services irc-format-normalize)
@@ -297,20 +303,6 @@
 
 (use-package erc-fill
   ;; IRC client line wrap.
-  :preface
-  ;; Fix unwanted scroll jumps when using `erc-fill-wrap'.
-  (let* ((patch-base-uri "https://gitlab.com/emacs-erc/edge/-/raw/master/resources/patches/")
-         (patch-uri (concat patch-base-uri "0001-5.6.1-Prefer-window-text-pixel-size-in-erc-fill.patch"))
-         (file-to-patch (concat (file-name-sans-extension (locate-library "erc-fill")) ".el")))
-    (when (and (file-exists-p file-to-patch) (file-writable-p file-to-patch))
-      (let ((default-directory (expand-file-name (file-name-parent-directory file-to-patch))))
-        (and (with-current-buffer (url-retrieve-synchronously patch-uri)
-               (call-process-region
-                (marker-position url-http-end-of-headers) (point-max)
-                "patch" nil "*Patch Output*"
-                "-p3"))
-             (chmod "erc-fill.el" #o444)
-             (byte-recompile-file "erc-fill.el")))))
   :defer t
   :custom
   (erc-fill-function 'erc-fill-wrap))
