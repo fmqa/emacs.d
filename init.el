@@ -139,6 +139,9 @@
 (use-package icomplete
   ;; Minibuffer completions.
   :defer t
+  :bind (:map icomplete-vertical-mode-minibuffer-map
+              ("C-<home>" . icomplete-vertical-goto-first)
+              ("C-<end>" . icomplete-vertical-goto-last))
   :custom
   (fido-vertical-mode t))
 
