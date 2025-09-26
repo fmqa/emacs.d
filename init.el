@@ -281,6 +281,9 @@
   :ensure t
   :pin gnu-devel ;; Use the Erc snapshot for latest features & fixes.
   :hook (erc-mode . erc-scroll-conservatively-in-buffer)
+  :bind (:map erc-mode-map
+              ("M-RET" . erc-send-current-line)
+              ("RET" . nil))
   :config
   (setopt erc-modules
           (seq-union '(bufbar nicks notifications scrolltobottom services irc-format-normalize)
@@ -293,26 +296,26 @@
 
 (use-package erc-match
   ;; Better fool hiding.
-  :defer t
+  :after erc
   :hook ((erc-text-matched . erc-hide-fools))
   :custom
   (erc-fool-highlight-type 'all))
 
 (use-package erc-button
   ;; IRC client button commands.
-  :defer t
+  :after erc
   :config
   (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE))
 
 (use-package erc-fill
   ;; IRC client line wrap.
-  :defer t
+  :after erc
   :custom
   (erc-fill-function 'erc-fill-wrap))
 
 (use-package erc-track
   ;; IRC client activity tracking.
-  :defer t
+  :after erc
   :config
   ;; Prevent JOINs and PARTs from lighting up the mode-line.
   (setopt erc-track-faces-priority-list
@@ -321,7 +324,7 @@
 
 (use-package erc-goodies
   ;; IRC client formatting.
-  :defer t
+  :after erc
   :hook (erc-mode . erc-keep-place-indicator-enable)
   :custom
   (erc-input-line-position -1)
@@ -330,13 +333,13 @@
 
 (use-package erc-status-sidebar
   ;; IRC client sidebar.
-  :defer t
+  :after erc
   :custom
   (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
 
 (use-package erc-irc-format
   ;; Enable https://github.com/fmqa/erc-irc-format for transient-based formatting UI.
-  :defer t
+  :after erc
   :vc (:url "https://github.com/fmqa/erc-irc-format.git" :branch "main")
   :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
 
