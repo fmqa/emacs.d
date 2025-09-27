@@ -271,6 +271,7 @@
   (org-replace-disputed-keys t))
 
 (use-package rcirc
+  ;; Minimalist IRC
   :defer t
   :preface
   (defun scroll-conservatively-in-rcirc ()
@@ -292,6 +293,7 @@
   (rcirc-prompt "%n \u27a4 "))
 
 (use-package rcirc-color
+  ;; Colored nicks for rcirc
   :ensure t
   :after rcirc
   :custom
