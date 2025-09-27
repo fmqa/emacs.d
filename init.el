@@ -270,78 +270,33 @@
   :custom
   (org-replace-disputed-keys t))
 
-(use-package erc
-  ;; IRC client.
-  :preface
-  (defun erc-scroll-conservatively-in-buffer ()
-    "For the current buffer, always scroll just enough text to bring point into view."
-    (setq-local scroll-conservatively most-positive-fixnum)
-    (setq-local scroll-step 0))
+(use-package rcirc
   :defer t
+  :preface
+  (defun scroll-conservatively-in-rcirc ()
+    "Scroll conservatively in rcirc buffers."
+    (setq-local scroll-conservatively most-positive-fixnum))
+  :hook ((rcirc-mode . rcirc-track-minor-mode)
+         (rcirc-mode . scroll-conservatively-in-rcirc))
+  :config
+  (add-to-list 'display-buffer-alist '((major-mode . rcirc-mode) display-buffer-reuse-mode-window))
+  :custom-face
+  (rcirc-server ((t :foreground unspecified :inherit font-lock-comment-face)))
+  (rcirc-prompt ((t :foreground "CornflowerBlue" :weight bold)))
+  (rcirc-nick-in-message ((t :foreground "CornflowerBlue" :weight bold)))
+  (rcirc-my-nick ((t :foreground "CornflowerBlue" :weight bold)))
+  (rcirc-timestamp ((t :inherit font-lock-number-face)))
+  (rcirc-other-nick ((t :weight bold)))
+  :custom
+  (rcirc-fill-column 160)
+  (rcirc-prompt "%n \u27a4 "))
+
+(use-package rcirc-color
   :ensure t
-  :pin gnu-devel ;; Use the Erc snapshot for latest features & fixes.
-  :hook (erc-mode . erc-scroll-conservatively-in-buffer)
-  :bind (:map erc-mode-map
-              ("M-RET" . erc-send-current-line)
-              ("RET" . nil))
-  :config
-  (setopt erc-modules
-          (seq-union '(bufbar nicks notifications scrolltobottom services irc-format-normalize)
-                     erc-modules))
+  :after rcirc
   :custom
-  (erc-interactive-display 'buffer)
-  (erc-receive-query-display 'bury)
-  (erc-server-reconnect-function 'erc-server-delayed-check-reconnect)
-  (erc-prompt "\u27a4"))
-
-(use-package erc-match
-  ;; Better fool hiding.
-  :after erc
-  :hook ((erc-text-matched . erc-hide-fools))
-  :custom
-  (erc-fool-highlight-type 'all))
-
-(use-package erc-button
-  ;; IRC client button commands.
-  :after erc
-  :config
-  (setf (alist-get "Ignore" erc-nick-popup-alist nil nil 'equal) 'erc-cmd-IGNORE))
-
-(use-package erc-fill
-  ;; IRC client line wrap.
-  :after erc
-  :custom
-  (erc-fill-function 'erc-fill-wrap))
-
-(use-package erc-track
-  ;; IRC client activity tracking.
-  :after erc
-  :config
-  ;; Prevent JOINs and PARTs from lighting up the mode-line.
-  (setopt erc-track-faces-priority-list
-          (remq 'erc-notice-face erc-track-faces-priority-list))
-  :custom (erc-track-priority-faces-only 'all))
-
-(use-package erc-goodies
-  ;; IRC client formatting.
-  :after erc
-  :hook (erc-mode . erc-keep-place-indicator-enable)
-  :custom
-  (erc-input-line-position -1)
-  (erc-scrolltobottom-all t)
-  (erc-interpret-mirc-color t))
-
-(use-package erc-status-sidebar
-  ;; IRC client sidebar.
-  :after erc
-  :custom
-  (erc-status-sidebar-click-display-action '(display-buffer-same-window (inhibit-same-window))))
-
-(use-package erc-irc-format
-  ;; Enable https://github.com/fmqa/erc-irc-format for transient-based formatting UI.
-  :after erc
-  :vc (:url "https://github.com/fmqa/erc-irc-format.git" :branch "main")
-  :bind (:map erc-mode-map ("C-c q" . erc-irc-format)))
+  (rcirc-color-other-attributes '(:weight bold))
+  (rcirc-color-is-deterministic t))
 
 (use-package ediff-wind
   ;; Saner ediff.
