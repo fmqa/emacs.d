@@ -279,8 +279,12 @@
     (setq-local scroll-conservatively most-positive-fixnum))
   :hook ((rcirc-mode . rcirc-track-minor-mode)
          (rcirc-mode . scroll-conservatively-in-rcirc))
+  :bind (:map rcirc-mode-map
+              ("RET" . nil)
+              ("M-RET" . rcirc-send-input))
   :config
   (add-to-list 'display-buffer-alist '((major-mode . rcirc-mode) display-buffer-reuse-mode-window))
+  (setf (alist-get "ACTION" rcirc-response-formats nil nil 'equal) "* %N %m")
   :custom-face
   (rcirc-server ((t :foreground unspecified :inherit font-lock-comment-face)))
   (rcirc-prompt ((t :foreground "CornflowerBlue" :weight bold)))
