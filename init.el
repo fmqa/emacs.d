@@ -289,9 +289,9 @@
   (rcirc-server ((t :foreground unspecified :inherit font-lock-comment-face)))
   (rcirc-prompt ((t :foreground "CornflowerBlue" :weight bold)))
   (rcirc-nick-in-message ((t :foreground "CornflowerBlue" :weight bold)))
-  (rcirc-my-nick ((t :foreground "CornflowerBlue" :weight bold)))
-  (rcirc-timestamp ((t :inherit font-lock-number-face)))
+  (rcirc-my-nick ((t :foreground "CornflowerBlue" :weight bold :underline (:style dots))))
   (rcirc-other-nick ((t :weight bold)))
+  (rcirc-timestamp ((t :inherit font-lock-number-face)))
   :custom
   (rcirc-fill-column 160)
   (rcirc-prompt "%n \u27a4 "))
