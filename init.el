@@ -215,7 +215,7 @@
 (use-package window
   ;; Windowing rules.
   :preface
-  (defun shell-command-buffer-name-condition (name action)
+  (defun shell-command-buffer-name-condition (name _action)
     (or (equal name shell-command-buffer-name)
         (equal name shell-command-buffer-name-async)))
   :config
@@ -298,8 +298,28 @@
 
 (use-package rcirc-color
   ;; Colored nicks for rcirc
+  :functions rcirc-color-distance
+  :preface
+  (defun rcirc-color-make-list (threshold)
+    "Compute rcirc-color candidate list"
+    (let ((mine (with-temp-buffer
+                  (insert (propertize "x" 'face 'rcirc-my-nick))
+                  (goto-char (point-min))
+                  (cons (foreground-color-at-point)
+                        (background-color-at-point))))
+          candidates)
+      (dolist (elt color-name-rgb-alist)
+        (when (and (not (color-gray-p (car elt)))
+                   (> (rcirc-color-distance (car elt) (car mine)) threshold)
+                   (> (rcirc-color-distance (car elt) (cdr mine)) threshold))
+          (setq candidates (cons (car elt) candidates))))
+      candidates))
   :ensure t
   :after rcirc
+  :init
+  (setq rcirc-colors nil)
+  :config
+  (setq rcirc-colors (rcirc-color-make-list 200))
   :custom
   (rcirc-color-other-attributes '(:weight bold))
   (rcirc-color-is-deterministic t))
