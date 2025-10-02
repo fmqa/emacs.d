@@ -337,6 +337,42 @@
   ;;
   ;; end debbugs#79551
   ;;
+  ;; --
+  ;;
+  ;; debbugs #79313 - Fix parsing single-digit color codes in rcirc
+  ;;
+  (defun rcirc-override-color-attributes (&rest _)
+    "Highlight IRC color-codes, indicated by ASCII control codes."
+    (while (re-search-forward
+            (rx #x03
+                (? (group (** 1 2 digit)) (? "," (group (** 1 2 digit))))
+                (*? nonl)
+                (or #x03 #x0f eol))
+            nil t)
+      (let (foreground background)
+        (when-let* ((fg-raw (match-string 1))
+                    (fg (string-to-number fg-raw))
+                    ((<= 0 fg (1- (length rcirc-color-codes)))))
+          (setq foreground (aref rcirc-color-codes fg)))
+        (when-let* ((bg-raw (match-string 2))
+                    (bg (string-to-number bg-raw))
+                    ((<= 0 bg (1- (length rcirc-color-codes)))))
+          (setq background (aref rcirc-color-codes bg)))
+        (rcirc-add-face (match-beginning 0) (match-end 0)
+                        `(face (,@(and foreground (list :foreground foreground))
+                                ,@(and background (list :background background))))))))
+  (defun rcirc-override-remove-markup-codes (&rest _)
+    "Remove ASCII control codes used to designate markup."
+    (while (re-search-forward
+            (rx (or #x02 #x1d #x1f #x1e #x11 #x0f
+                    (: #x03 (? (** 1 2 digit) (? "," (** 1 2 digit))))))
+            nil t)
+      (delete-region (match-beginning 0) (match-end 0))))
+  (advice-add 'rcirc-color-attributes :override #'rcirc-override-color-attributes)
+  (advice-add 'rcirc-remove-markup-codes :override #'rcirc-override-remove-markup-codes)
+  ;;
+  ;; end debbugs #79313
+  ;;
   :hook ((rcirc-mode . rcirc-track-minor-mode)
          (rcirc-mode . scroll-conservatively-in-rcirc))
   :bind (:map rcirc-mode-map
