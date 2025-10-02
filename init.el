@@ -307,7 +307,7 @@
   (defvar rcirc-prompt-end-marker-last-position nil "Last position of rcirc's prompt end marker.")
   (defvar rcirc-buffer-undo-list nil "The undo list before any display operations.")
   (defun rcirc-filter-return-target-buffer (buffer)
-    (when rcirc-self-display
+    (when (and rcirc-self-display buffer)
       (with-current-buffer buffer
         (setq rcirc-prompt-end-marker-last-position (marker-position rcirc-prompt-end-marker))
         (setq rcirc-buffer-undo-list buffer-undo-list)
