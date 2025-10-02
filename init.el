@@ -185,7 +185,7 @@
   :custom
   (recentf-mode t))
 
-(use-package display-line-numbers-mode
+(use-package display-line-numbers
   ;; Line numbers.
   :defer t
   :hook (text-mode prog-mode conf-mode))
@@ -205,7 +205,7 @@
   :defer t
   :hook ((prog-mode conf-mode) . electric-pair-local-mode))
 
-(use-package hippie-expand
+(use-package hippie-exp
   ;; Accessible hippie-expand.
   :defer t
   :bind ("C-x C-/" . hippie-expand)
