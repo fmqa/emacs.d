@@ -272,6 +272,7 @@
 
 (use-package rcirc
   ;; Minimalist IRC
+  :functions rcirc-add-face
   :defer t
   :preface
   (defun scroll-conservatively-in-rcirc ()
