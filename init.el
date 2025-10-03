@@ -4,6 +4,7 @@
   ;; Basic editing conveniences.
   :config
   (put 'narrow-to-region 'disabled nil)
+  (push (file-name-concat user-emacs-directory "lisp") load-path)
   :custom
   (menu-bar-mode nil)
   (tool-bar-mode nil)
@@ -272,108 +273,11 @@
 
 (use-package rcirc
   ;; Minimalist IRC
-  :functions rcirc-add-face
   :defer t
   :preface
   (defun scroll-conservatively-in-rcirc ()
     "Scroll conservatively in rcirc buffers."
     (setq-local scroll-conservatively most-positive-fixnum))
-  ;;
-  ;; debbugs#79551 Improve undo behavior in Rcirc
-  ;;
-  (defun rcirc-update-undo-list (shift)
-    ;; Translate buffer positions in buffer-undo-list by SHIFT.
-    ;; Copied from erc.el
-    (unless (or (zerop shift) (atom buffer-undo-list))
-      (let ((list buffer-undo-list) elt)
-        (while list
-          (setq elt (car list))
-          (cond ((integerp elt)           ; POSITION
-                 (cl-incf (car list) shift))
-                ((or (atom elt)           ; nil, EXTENT
-                     ;; (eq t (car elt))  ; (t . TIME)
-                     (markerp (car elt))) ; (MARKER . DISTANCE)
-                 nil)
-                ((integerp (car elt))     ; (BEGIN . END)
-                 (cl-incf (car elt) shift)
-                 (cl-incf (cdr elt) shift))
-                ((stringp (car elt))      ; (TEXT . POSITION)
-                 (cl-incf (cdr elt) (* (if (natnump (cdr elt)) 1 -1) shift)))
-                ((null (car elt))         ; (nil PROPERTY VALUE BEG . END)
-                 (let ((cons (nthcdr 3 elt)))
-                   (cl-incf (car cons) shift)
-                   (cl-incf (cdr cons) shift))))
-          (setq list (cdr list))))))
-  (defvar rcirc-self-display nil "Set to non-nil if rcirc's own display routine is running.")
-  (defvar rcirc-prompt-end-marker-last-position nil "Last position of rcirc's prompt end marker.")
-  (defvar rcirc-buffer-undo-list nil "The undo list before any display operations.")
-  (defun rcirc-filter-return-target-buffer (buffer)
-    (when (and rcirc-self-display buffer)
-      (with-current-buffer buffer
-        (setq rcirc-prompt-end-marker-last-position (marker-position rcirc-prompt-end-marker))
-        (setq rcirc-buffer-undo-list buffer-undo-list)
-        (setq buffer-undo-list t)))
-    buffer)
-  (defun rcirc-adjust-undo-list (&rest _)
-    (when rcirc-self-display
-      (setq buffer-undo-list rcirc-buffer-undo-list)
-      (rcirc-update-undo-list (- rcirc-prompt-end-marker rcirc-prompt-end-marker-last-position))))
-  (defun rcirc-around-print (around &rest args)
-    (let (rcirc-prompt-end-marker-last-position
-          rcirc-buffer-undo-list
-          (rcirc-self-display t))
-      (apply around args)))
-  (defun rcirc-around-update-prompt (around &optional all)
-    (if all
-        (funcall around all))
-    (let ((buffer-undo-list t))
-      (funcall around)))
-  (defun rcirc-after-send-input ()
-    (setq buffer-undo-list nil))
-  (advice-add 'rcirc-target-buffer :filter-return #'rcirc-filter-return-target-buffer)
-  (advice-add 'rcirc-print :around #'rcirc-around-print)
-  (advice-add 'rcirc-update-prompt :around #'rcirc-around-update-prompt)
-  (advice-add 'rcirc-send-input :after #'rcirc-after-send-input)
-  (add-hook 'rcirc-print-functions 'rcirc-adjust-undo-list)
-  ;;
-  ;; end debbugs#79551
-  ;;
-  ;; --
-  ;;
-  ;; debbugs #79313 - Fix parsing single-digit color codes in rcirc
-  ;;
-  (defun rcirc-override-color-attributes (&rest _)
-    "Highlight IRC color-codes, indicated by ASCII control codes."
-    (while (re-search-forward
-            (rx #x03
-                (? (group (** 1 2 digit)) (? "," (group (** 1 2 digit))))
-                (*? nonl)
-                (or #x03 #x0f eol))
-            nil t)
-      (let (foreground background)
-        (when-let* ((fg-raw (match-string 1))
-                    (fg (string-to-number fg-raw))
-                    ((<= 0 fg (1- (length rcirc-color-codes)))))
-          (setq foreground (aref rcirc-color-codes fg)))
-        (when-let* ((bg-raw (match-string 2))
-                    (bg (string-to-number bg-raw))
-                    ((<= 0 bg (1- (length rcirc-color-codes)))))
-          (setq background (aref rcirc-color-codes bg)))
-        (rcirc-add-face (match-beginning 0) (match-end 0)
-                        `(face (,@(and foreground (list :foreground foreground))
-                                ,@(and background (list :background background))))))))
-  (defun rcirc-override-remove-markup-codes (&rest _)
-    "Remove ASCII control codes used to designate markup."
-    (while (re-search-forward
-            (rx (or #x02 #x1d #x1f #x1e #x11 #x0f
-                    (: #x03 (? (** 1 2 digit) (? "," (** 1 2 digit))))))
-            nil t)
-      (delete-region (match-beginning 0) (match-end 0))))
-  (advice-add 'rcirc-color-attributes :override #'rcirc-override-color-attributes)
-  (advice-add 'rcirc-remove-markup-codes :override #'rcirc-override-remove-markup-codes)
-  ;;
-  ;; end debbugs #79313
-  ;;
   :hook ((rcirc-mode . rcirc-track-minor-mode)
          (rcirc-mode . scroll-conservatively-in-rcirc))
   :bind (:map rcirc-mode-map
